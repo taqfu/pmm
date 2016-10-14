@@ -36,7 +36,13 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
+        if ($request->confirmPeriod=="immediately"){
+            $confirm_period = 0;
+        } else {
+            $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
+        }
+        var_dump($confirm_period, $check_in_period);
     }
 
     /**

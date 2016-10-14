@@ -1,4 +1,4 @@
-<form method="POST" action="">
+<form method="POST" action="route('message.create')">
     {{csrf_field()}}
     <div>How often do you want to check in for this message?</div>
     <div>
@@ -13,12 +13,12 @@
     </div>
     <div>If you don't respond, how often should we contact you before sending this message?</div>
     <div>
-        <inpt type='radio' name='confirmPeriod' value='immediately' /> Immediately
+        <input type='radio' name='confirmPeriod' value='immediately' /> Immediately
         <input type='radio' name='confirmPeriod' value='day' /> Every Day
         <input type='radio' name='confirmPeriod' value='week' /> Every Week
     </div>
     <div>And how many times do you want a message sent?
-        <select name='confirm'>
+        <select name='confirmIterations'>
             @for($num=1;$num<9;$num++){
               <option value="{{$num}}">{{$num}}</option>
             @endfor
