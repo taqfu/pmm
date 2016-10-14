@@ -1,4 +1,4 @@
-<form method="POST" action="route('message.create')">
+<form method="POST" action="{{route('message.store')}}">
     {{csrf_field()}}
     <div>How often do you want to check in for this message?</div>
     <div>
@@ -17,7 +17,7 @@
         <input type='radio' name='confirmPeriod' value='day' /> Every Day
         <input type='radio' name='confirmPeriod' value='week' /> Every Week
     </div>
-    <div>And how many times do you want a message sent?
+    <div>How many times do you want us to try to contact you before we send out this message?
         <select name='confirmIterations'>
             @for($num=1;$num<9;$num++){
               <option value="{{$num}}">{{$num}}</option>
