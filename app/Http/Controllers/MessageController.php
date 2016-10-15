@@ -16,7 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        Message::checkAll();
     }
 
     /**
@@ -40,12 +40,12 @@ class MessageController extends Controller
         $mysql_timestamp = 'Y-m-d H:i:s';
         $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
         if (substr($request->checkInPeriod,0,1)=="w"){
-            $check_in_due = 
-              date($mysql_timestamp, 
+            $check_in_due =
+              date($mysql_timestamp,
               strtotime('+' . $request->checkInEvery . 'week', time()));
         } else if (substr($request->checkInPeriod,0,1)=="d"){
-            $check_in_due = 
-              date($mysql_timestamp, 
+            $check_in_due =
+              date($mysql_timestamp,
               strtotime('+' . $request->checkInEvery . ' day', time()));
         }
         if ($request->confirmPeriod=="immediately"){
@@ -53,9 +53,9 @@ class MessageController extends Controller
         } else {
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
         }
-        var_dump($confirm_period, $check_in_period, date($mysql_timestamp), 
+        var_dump($confirm_period, $check_in_period, date($mysql_timestamp),
           $check_in_due);
-        
+
 /*
         $message = new Message;
         $message->user_id = Auth::user()->id;
