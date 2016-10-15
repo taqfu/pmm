@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Message;
 class MessageController extends Controller
 {
     /**
@@ -36,13 +36,26 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        $now = date('Y-m-d H:i:s');
         $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
+        if (substr($request->checkInPeriod,0,1)=="w"){
+            $check_in_due = strtotime('+1 day', $now);
+        } else if (substr($request->checkInPeriod,0,1)=="d"){
+            $check_in_due = strtotime('+1 week', $now);
+        }
         if ($request->confirmPeriod=="immediately"){
             $confirm_period = 0;
         } else {
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
         }
-        var_dump($confirm_period, $check_in_period);
+        var_dump($confirm_period, $check_in_period)
+        $message = new Message;
+        $message->user_id = Auth::user()->id;
+        $message->activated_at = $now;
+        $message->check_in_period($check_in_period);
+        $message->confirm_period($confirm_period);
+        $message->check_in_due = $check_in_due;
+        $message->save();
     }
 
     /**

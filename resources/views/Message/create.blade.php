@@ -13,7 +13,7 @@
     </div>
     <div>If you don't respond, how often should we contact you before sending this message?</div>
     <div>
-        <input type='radio' name='confirmPeriod' value='immediately' /> Immediately
+        <input type='radio' name='confirmPeriod' value='immediately' checked /> Immediately
         <input type='radio' name='confirmPeriod' value='day' /> Every Day
         <input type='radio' name='confirmPeriod' value='week' /> Every Week
     </div>
