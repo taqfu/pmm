@@ -1,4 +1,5 @@
 <form method="POST" action="{{route('message.store')}}">
+    @include ("Email.create")
     {{csrf_field()}}
     <div>How often do you want to check in for this message?</div>
     <div>

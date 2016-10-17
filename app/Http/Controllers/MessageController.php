@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
+use App\Email;
 use App\Message;
 use Auth;
+use Mail;
 class MessageController extends Controller
 {
     /**
@@ -53,18 +56,20 @@ class MessageController extends Controller
         } else {
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
         }
-        var_dump($confirm_period, $check_in_period, date($mysql_timestamp),
-          $check_in_due);
-
-/*
+        $email = new Email;
+        $email->user_id = Auth::user()->id;
+        $email->body = $request->emailBody;
+        $email->send_to = $request->emailSendTo; 
+        $email->save();
         $message = new Message;
         $message->user_id = Auth::user()->id;
         $message->activated_at = date($mysql_timestamp);
         $message->check_in_period = $check_in_period;
         $message->confirm_period = $confirm_period;
         $message->check_in_due = $check_in_due;
+        $message->ref_type = "email";
+        $message->ref_id = $email->id;
         $message->save();
-*/
     }
 
     /**
