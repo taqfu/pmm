@@ -19,7 +19,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        Message::checkAll();
+        return View('Message.index', [
+            "messages"=>Message::where('user_id', Auth::user()->id)->get(),
+        ]);
     }
 
     /**
