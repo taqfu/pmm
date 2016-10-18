@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Confirmation;
 use App\Email;
 use App\Message;
 use Auth;
@@ -19,6 +20,7 @@ class MessageController extends Controller
      */
     public function index()
     {
+        Message::checkAll();
         return View('Message.index', [
             "messages"=>Message::where('user_id', Auth::user()->id)->get(),
         ]);
@@ -58,6 +60,7 @@ class MessageController extends Controller
         } else {
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
         }
+
         $email = new Email;
         $email->user_id = Auth::user()->id;
         $email->body = $request->emailBody;
@@ -72,6 +75,10 @@ class MessageController extends Controller
         $message->ref_type = "email";
         $message->ref_id = $email->id;
         $message->save();
+        $confirmation = new Confirmation;
+        $confirmation->message_id = $message->id;
+        $confirmation->iteration=0;
+        $confirmation=save();
         return back();
     }
 
