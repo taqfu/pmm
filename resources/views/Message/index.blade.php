@@ -3,7 +3,7 @@
 ?>
 @extends ('layouts.app')
 @section ('content')
-@foreach ($messages as $message)
+@forelse ($messages as $message)
     <div>
         @if ($message->ref_type=="email")
             E-mail
@@ -67,8 +67,10 @@
         @include ('Message.destroy')
 
     </div>
-@if ($message->ref_type)
-    @include('Email.show', ['email'=>Email::find($message->ref_id)])
-@endif
+    @if ($message->ref_type)
+        @include('Email.show', ['email'=>Email::find($message->ref_id)])
+    @endif
+@empty
+    You have no messages.
 @endforeach
 @endsection
