@@ -72,6 +72,7 @@ class MessageController extends Controller
         $message->ref_type = "email";
         $message->ref_id = $email->id;
         $message->save();
+        return back();
     }
 
     /**
