@@ -61,7 +61,7 @@ class MessageController extends Controller
         $email = new Email;
         $email->user_id = Auth::user()->id;
         $email->body = $request->emailBody;
-        $email->send_to = $request->emailSendTo; 
+        $email->send_to = $request->emailSendTo;
         $email->save();
         $message = new Message;
         $message->user_id = Auth::user()->id;
@@ -124,6 +124,7 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message->destroy($id);
+        return->back();
     }
 }
