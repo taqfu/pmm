@@ -105,7 +105,15 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $message = Message::find($id);
+        echo $request->updateFunction;
+        if ($request->updateFunction=="activate"){
+            $message->activated_at=date('Y-m-d H:i:s');
+        } else if ($request->updateFunction=="deactivate"){
+            $message->activated_at=null;
+        }
+        $message->save();
+        return back();
     }
 
     /**
