@@ -72,5 +72,5 @@
     @endif
 @empty
     You have no messages.
-@endforeach
+@endforelse
 @endsection
