@@ -1,5 +1,6 @@
 @extends ('layouts.app')
 @section ('content')
-@include('Message.create')
+@if (Auth::user())
+    @include('Message.create')
+@endif
 @endsection
-
