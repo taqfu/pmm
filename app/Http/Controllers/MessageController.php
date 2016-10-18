@@ -78,7 +78,7 @@ class MessageController extends Controller
         $confirmation = new Confirmation;
         $confirmation->message_id = $message->id;
         $confirmation->iteration=0;
-        $confirmation=save();
+        $confirmation->save();
         return back();
     }
 
