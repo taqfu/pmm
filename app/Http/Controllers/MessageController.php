@@ -125,6 +125,6 @@ class MessageController extends Controller
     public function destroy($id)
     {
         $message->destroy($id);
-        return->back();
+        return back();
     }
 }
