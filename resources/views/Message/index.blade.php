@@ -1,6 +1,8 @@
 <?php
     use App\Email;
 ?>
+@extends ('layouts.app')
+@section ('content')
 @foreach ($messages as $message)
     <div>
         @if ($message->ref_type=="email")
@@ -69,3 +71,4 @@
     @include('Email.show', ['email'=>Email::find($message->ref_id)])
 @endif
 @endforeach
+@endsection
