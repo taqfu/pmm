@@ -8,7 +8,7 @@ class Confirmation extends Model
 {
     public static function any($message_id){
         $message = Message::find($message_id);
-        var_dump("ANY STARTED");
+        var_dump("ANY STARTED", substr($message->confirm_period, 0, 1));
         if (substr($message->confirm_period, 0, 1)==0){
             return false;
         }
