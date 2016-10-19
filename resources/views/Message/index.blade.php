@@ -32,20 +32,20 @@
             @endif
         @endif
         - Due {{date("m/d/y g:i", strtotime($message->check_in_due))}} -
-        @if (substr($message->check_in_period, 0, 1)>1)
+        @if (substr($message->confirm_period, 0, 1)>1)
             Confirm every
 
-            @if (substr($message->check_in_period, 1, 1)=="w")
+            @if (substr($message->confirm_period, 1, 1)=="w")
                 Week
             @else
                 Day
             @endif
             Up To
-            {{substr($message->check_in_period, 0, 1)}}
+            {{substr($message->confirm_period, 0, 1)}}
                 Times
-        @elseif (substr($message->check_in_period, 0, 1)==1)
+        @elseif (substr($message->confirm_period, 0, 1)==1)
             1
-            @if (substr($message->check_in_period, 1, 1)=="w")
+            @if (substr($message->confirm_period, 1, 1)=="w")
                 Week
             @else
                 Day
