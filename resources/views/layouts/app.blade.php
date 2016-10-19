@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{$site_root}}/css/app.css" rel="stylesheet">
+    <link href="{{$site_root}}/css/css.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -90,5 +91,7 @@
 
     <!-- Scripts -->
     <script src="{{$site_root}}/js/app.js"></script>
+    <script src="{{$site_root}}/js/js.js"></script>
+
 </body>
 </html>

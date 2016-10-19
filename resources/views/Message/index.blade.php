@@ -51,8 +51,9 @@
                 Day
             @endif
             To Confirm
+
         @endif
-        <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" style='display:inline'>
+        <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
             {{csrf_field()}}
             {{method_field('PUT')}}
             @if ($message->activated_at!==NULL)
