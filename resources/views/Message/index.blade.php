@@ -1,8 +1,7 @@
 <?php
     use App\Email;
 ?>
-@extends ('layouts.app')
-@section ('content')
+
 @forelse ($messages as $message)
     <div>
         @if ($message->ref_type=="email")
@@ -74,4 +73,3 @@
 @empty
     You have no messages.
 @endforelse
-@endsection

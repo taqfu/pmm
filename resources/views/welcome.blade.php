@@ -3,4 +3,5 @@
 @if (Auth::user())
     @include('Message.create')
 @endif
+@include ('Message.index')
 @endsection

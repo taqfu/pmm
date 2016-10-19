@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        "messages"=>Message::where('user_id', Auth::user()->id)->get(),
+    ]);
 });
 
 Auth::routes();
