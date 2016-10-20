@@ -13,9 +13,14 @@
 use App\Message;
 
 Route::get('/', function () {
-    return view('welcome', [
-        "messages"=>Message::where('user_id', Auth::user()->id)->get(),
-    ]);
+    Message::checkAll();
+    if (Auth::guest()){
+        return view('welcome');
+    } else if (Auth::user()){
+        return view('welcome', [
+            "messages"=>Message::where('user_id', Auth::user()->id)->get(),
+        ]);
+    }
 });
 
 Auth::routes();
