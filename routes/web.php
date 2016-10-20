@@ -11,9 +11,11 @@
 |
 */
 use App\Message;
+use App\Confirmation;
 
 Route::get('/', function () {
-    Message::checkAll();
+//    Message::checkAll();
+    Confirmation::daily();
     if (Auth::guest()){
         return view('welcome');
     } else if (Auth::user()){

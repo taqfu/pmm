@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Confirmation;
 use App\Message;
 class Kernel extends ConsoleKernel
 {
@@ -27,7 +28,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function(){
+            Message::checkAll();
         })->everyFiveMinutes();
+        $schedule->call(function(){
+            Confirmation::daily();
+        })->dailyAt('9:00');
 
     }
 

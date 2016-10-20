@@ -11,7 +11,10 @@ class Email extends Model
     public static function sendOut($message){
         $email = Email::find($message->ref_id);
         Mail::send('email.template', ['body'=>$email->body], function ($m) use ($email) {
-                $m->to($email->send_to, Auth::user()->name . "c/o Words Prevail")->subject('E-mail from ' . Auth::user()->name . " sent using Words Prevail");
+            $user = User::find($email->user_id);
+            
+            $m->to($email->send_to, $user->name . "c/o Words Prevail")
+              ->subject('E-mail from ' . $user->name . " sent using Words Prevail");
         });
     }
 }
