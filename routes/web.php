@@ -14,11 +14,10 @@ use App\Message;
 use App\Confirmation;
 
 Route::get('/', function () {
-//    Message::checkAll();
-    Confirmation::daily();
     if (Auth::guest()){
         return view('welcome');
     } else if (Auth::user()){
+        Message::check_in_user(Auth::user()->id);
         return view('welcome', [
             "messages"=>Message::where('user_id', Auth::user()->id)->get(),
         ]);

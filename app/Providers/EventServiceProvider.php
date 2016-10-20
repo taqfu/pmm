@@ -27,6 +27,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen('auth.login', function($event){
+            Message::check_in_user(Auth::user()->id);
+        });
     }
 }
