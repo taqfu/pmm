@@ -30,7 +30,13 @@
                 Days
             @endif
         @endif
-        - Due {{date("m/d/y g:i", strtotime($message->check_in_due))}} -
+        - Due
+        @if ($message->activated_at==NULL)
+            N/A
+        @else
+            {{date("m/d/y g:i", strtotime($message->check_in_due))}}
+        @endif
+        -
         @if (substr($message->confirm_period, 0, 1)>1)
             Confirm every
 
@@ -65,11 +71,13 @@
 
         </form>
         @include ('Message.destroy')
+        <input type='button' id='show-update-message' class='show-button' />
 
     </div>
     @if ($message->ref_type)
         @include('Email.show', ['email'=>Email::find($message->ref_id)])
     @endif
+    @include('Message.edit')
 @empty
     You have no messages.
 @endforelse
