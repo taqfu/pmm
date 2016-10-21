@@ -119,6 +119,8 @@ class MessageController extends Controller
             $message->activated_at=date('Y-m-d H:i:s');
         } else if ($request->updateFunction=="deactivate"){
             $message->activated_at=null;
+        } else if ($request->updateFunction=="edit"){
+            
         }
         $message->save();
         return back();

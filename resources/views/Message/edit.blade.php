@@ -1,6 +1,7 @@
-<form method="POST" action="{{route('message.update', ['id'=>$message->id])}}">
+<form method="POST" action="{{route('message.update', ['id'=>$message->id])}}" class='text-center'>
     {{csrf_field()}}
-    @include ("Email.create")
+    @include ("Email.edit", ['id'=$message->ref_id])
+    <input type='hidden' name='updateFunction' value='update' />
     <div>How often do you want to check in for this message?</div>
     <div>
         Every
