@@ -4,6 +4,16 @@ $(document.body).ready(function () {
         $("#" + id).addClass('hidden');
         $("#show-" + id).removeClass('hidden');
     });
+    $(document).on('click', '.replace-primary-button', function(event){
+        var id = event.target.id.substr(16, event.target.id.length-16);
+        $("#" + id + "-primary").addClass('hidden');
+        $("#" + id + "-secondary").removeClass('hidden');
+    });
+    $(document).on('click', '.replace-secondary-button', function(event){
+        var id = event.target.id.substr(18, event.target.id.length-18);
+        $("#" + id + "-primary").removeClass('hidden');
+        $("#" + id + "-secondary").addClass('hidden');
+    });
     $(document).on('click', '.show-button', function(event){
         var id = event.target.id.substr(5, event.target.id.length-5);
         $("#" + id).removeClass('hidden');

@@ -1,6 +1,6 @@
-<form method="POST" action="{{route('message.update', ['id'=>$message->id])}}" class='text-center'>
+<form method="POST" action="{{route('message.update', ['id'=>$message->id])}}" class='hidden' id='update-message-secondary'>
     {{csrf_field()}}
-    @include ("Email.edit", ['id'=$message->ref_id])
+    @include ("Email.edit", ['id'=>$message->ref_id])
     <input type='hidden' name='updateFunction' value='update' />
     <div>How often do you want to check in for this message?</div>
     <div>
@@ -47,7 +47,7 @@
         <select name='confirmIterations'>
             @for($num=1;$num<9;$num++){
               <option value="{{$num}}"
-              @if ($message->confirm_period!=0 && substr($message->confirm_period, 0, 1)=='$num')
+              @if ($message->confirm_period!=0 && substr($message->confirm_period, 0, 1)==$num)
                   selected
               @endif
 
@@ -56,6 +56,6 @@
         </select>
     </div>
     <input type='submit' value='Submit' />
-    <input type='button' id='cancel-create-message' class='cancel-button' value='Cancel'/>
+    <input type='button' id='replace-secondary-update-message' class='replace-secondary-button' value='Cancel'/>
 
 </form>
