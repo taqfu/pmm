@@ -74,10 +74,11 @@
 
             <input type='button' id='replace-primary-update-message' class='replace-primary-button' value='Edit' class='btn btn-default'/>
         </div>
-        @if ($message->ref_type)
-            @include('Email.show', ['email'=>Email::find($message->ref_id)])
-        @endif
+
     </div>
+    @if ($message->ref_type)
+        @include('Email.show', ['email'=>Email::find($message->ref_id)])
+    @endif
         @include('Message.edit')
 @empty
     You have no messages.
