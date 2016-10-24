@@ -64,7 +64,7 @@
                 {{method_field('PUT')}}
                 @if ($message->activated_at!==NULL)
                     <input type='hidden' name='updateFunction' value='deactivate' />
-                    <input type='submit' value='Deactivate' />
+                    <input type='submit' value='Deactivate' class='btn btn-default' />
                 @else
                     <input type='hidden' name='updateFunction' value='activate' />
                     <input type='submit' value='Activate' class='btn btn-default'/>
@@ -72,14 +72,14 @@
 
             </form>
 
-            <input type='button' id='replace-primary-update-message' class='replace-primary-button' value='Edit' class='btn btn-default'/>
+            <input type='button' id='replace-primary-update-message' class='replace-primary-button btn btn-default' value='Edit' />
         </div>
 
-    </div>
     @if ($message->ref_type)
         @include('Email.show', ['email'=>Email::find($message->ref_id)])
     @endif
         @include('Message.edit')
+    </div>
 @empty
     You have no messages.
 @endforelse

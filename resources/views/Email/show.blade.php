@@ -1,14 +1,12 @@
-<div  class='panel panel-default'>
-    <div class='panel-heading'>
+<div class='panel panel-default' style='padding: 20px;'>
+    <div>
         To:
-        {{$email->send_to}}
+        <i>{{$email->send_to}}</i>
     </div>
-    <div class='panel-body'>
-        <div>
-            Body:
-        </div>
-        <div><i>
+    <div>
+        Body:
+        <i>
             {{$email->body}}
-        </i></div>
+        </i>
     </div>
 </div>
