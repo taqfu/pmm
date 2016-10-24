@@ -114,13 +114,39 @@ class MessageController extends Controller
     public function update(Request $request, $id)
     {
         $message = Message::find($id);
-        echo $request->updateFunction;
         if ($request->updateFunction=="activate"){
             $message->activated_at=date('Y-m-d H:i:s');
         } else if ($request->updateFunction=="deactivate"){
             $message->activated_at=null;
         } else if ($request->updateFunction=="edit"){
-            
+            $mysql_timestamp = 'Y-m-d H:i:s';
+            $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
+            if (substr($request->checkInPeriod,0,1)=="w"){
+                $check_in_due =
+                  date($mysql_timestamp,
+                  strtotime('+' . $request->checkInEvery . 'week', time()));
+            } else if (substr($request->checkInPeriod,0,1)=="d"){
+                $check_in_due =
+                  date($mysql_timestamp,
+                  strtotime('+' . $request->checkInEvery . ' day', time()));
+            }
+            if ($request->confirmPeriod=="immediately"){
+                $confirm_period = 0;
+            } else {
+                $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
+            }
+
+            $email = Email::find($request->emailID);
+            $email->body = $request->emailBody;
+            $email->send_to = $request->emailSendTo;
+            $email->save();
+
+            $message->check_in_period = $check_in_period;
+            $message->confirm_period = $confirm_period;
+            $message->check_in_due = $check_in_due;
+            $message->ref_type = "email";
+            $message->ref_id = $email->id;
+
         }
         $message->save();
         return back();

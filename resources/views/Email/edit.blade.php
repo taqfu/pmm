@@ -2,6 +2,7 @@
     use App\Email;
     $email = Email::find($id);
  ?>
+ <input type='hidden' name='emailID' value='{{$email->id}}' />
 <div>To:</div>
 <div>
     <input type='text' name='emailSendTo' maxlength='255' style='width:800px;' value='{{$email->send_to}}'/>
