@@ -6,14 +6,13 @@
     <div id='update-message-primary'>
         <div>
             @if ($message->ref_type=="email")
-                E-mail
+                <strong>E-mail</strong>
             @endif
-            -
+            - Created {{date("m/d/y g:i", strtotime($message->created_at))}} -
             @if ($message->activated_at==NULL)
                 Inactive
             @else
-                Activated
-                {{date("m/d/y g:i", strtotime($message->activated_at))}}
+                Active
             @endif
             - Check In Every
             @if(substr($message->check_in_period, 0, 1)==1)
