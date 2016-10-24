@@ -3,8 +3,8 @@
 ?>
 
 @forelse ($messages as $message)
-    <div id='update-message-primary'>
-        <div>
+    <div id='update-message-primary' class='panel panel-default'>
+        <div class='panel-heading'>
             @if ($message->ref_type=="email")
                 <strong>E-mail</strong>
             @endif
@@ -66,12 +66,12 @@
                     <input type='submit' value='Deactivate' />
                 @else
                     <input type='hidden' name='updateFunction' value='activate' />
-                    <input type='submit' value='Activate' />
+                    <input type='submit' value='Activate' class='btn btn-default'/>
                 @endif
 
             </form>
             @include ('Message.destroy')
-            <input type='button' id='replace-primary-update-message' class='replace-primary-button' value='Edit'/>
+            <input type='button' id='replace-primary-update-message' class='replace-primary-button' value='Edit' class='btn btn-default'/>
         </div>
         @if ($message->ref_type)
             @include('Email.show', ['email'=>Email::find($message->ref_id)])

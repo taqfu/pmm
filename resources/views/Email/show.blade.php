@@ -1,4 +1,4 @@
-<div  style=''>
+<div  class='panel-body'>
     <div>
         To:
         {{$email->send_to}}

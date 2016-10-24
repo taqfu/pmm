@@ -1,6 +1,6 @@
 <input type='button' id='show-create-message' class='show-button' value='New Message'/>
 
-<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden center'>
+<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden text-center'>
     @include ("Email.create")
     {{csrf_field()}}
     <div>How often do you want to check in for this message?</div>
@@ -27,6 +27,6 @@
             @endfor
         </select>
     </div>
-    <input type='submit' value='Submit' />
-    <input type='button' id='cancel-create-message' class='cancel-button' value='Cancel'/>
+    <input type='submit' value='Submit' class='btn btn-default'/>
+    <input type='button' id='cancel-create-message' class='cancel-button' value='Cancel' class='btn btn-default'/>
 </form>
