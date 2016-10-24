@@ -3,8 +3,8 @@
 ?>
 
 @forelse ($messages as $message)
-    <div id='update-message-primary' class='panel panel-default'>
-        <div class='panel-heading'>
+    <div id='update-message-primary' class='well'>
+        <div class=''>
             @if ($message->ref_type=="email")
                 <strong>E-mail</strong>
             @endif
@@ -58,6 +58,7 @@
                 To Confirm
 
             @endif
+            @include ('Message.destroy')
             <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
                 {{csrf_field()}}
                 {{method_field('PUT')}}
@@ -70,7 +71,7 @@
                 @endif
 
             </form>
-            @include ('Message.destroy')
+
             <input type='button' id='replace-primary-update-message' class='replace-primary-button' value='Edit' class='btn btn-default'/>
         </div>
         @if ($message->ref_type)
