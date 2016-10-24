@@ -1,6 +1,6 @@
 <input type='button' id='show-create-message' class='show-button' value='New Message'/>
 
-<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden'>
+<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden center'>
     @include ("Email.create")
     {{csrf_field()}}
     <div>How often do you want to check in for this message?</div>

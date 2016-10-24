@@ -19,4 +19,10 @@ $(document.body).ready(function () {
         $("#" + id).removeClass('hidden');
         $("#show-" + id).addClass('hidden');
     });
+    $(document).on('click', '.delete-message-button', function(event){
+        var id = event.target.id.substr(14, event.target.id.length-14);
+        if (confirm("Are you sure you want to delete this message?")) {
+                $("form#delete-message" + id).submit();
+        }
+    });
 });
