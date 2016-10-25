@@ -36,8 +36,9 @@
             @else
                 {{date("m/d/y g:i", strtotime($message->check_in_due))}}
             @endif
-            -
+
             @if (substr($message->confirm_period, 0, 1)>1)
+                -
                 Confirm every
 
                 @if (substr($message->confirm_period, 1, 1)=="w")
@@ -47,8 +48,9 @@
                 @endif
                 Up To
                 {{substr($message->confirm_period, 0, 1)}}
-                    Times
+                    Times Before Sending Message
             @elseif (substr($message->confirm_period, 0, 1)==1)
+                -            
                 1
                 @if (substr($message->confirm_period, 1, 1)=="w")
                     Week
@@ -78,8 +80,9 @@
     @if ($message->ref_type)
         @include('Email.show', ['email'=>Email::find($message->ref_id)])
     @endif
-        @include('Message.edit')
     </div>
+    @include('Message.edit')
+
 @empty
     You have no messages.
 @endforelse

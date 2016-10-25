@@ -14,6 +14,7 @@ use App\Message;
 use App\Confirmation;
 
 Route::get('/', function () {
+    Message::checkAll();
     if (Auth::guest()){
         return view('welcome');
     } else if (Auth::user()){
