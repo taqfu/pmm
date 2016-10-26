@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Confirmation;
 use App\Message;
+use Mail;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -32,10 +33,7 @@ class Kernel extends ConsoleKernel
         })->everyFiveMinutes();
         $schedule->call(function(){
             Confirmation::daily();
-        })->dailyAt('9:00');
-        $schedule->call(function(){
-            Confirmation::daily();
-        })->dailyAt('2:25');
+        })->daily();
 
     }
 
