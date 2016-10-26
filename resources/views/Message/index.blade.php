@@ -17,13 +17,13 @@
                 {{csrf_field()}}
                 {{method_field('PUT')}}
                 @if ($message->activated_at==NULL)
-                    <span id='show-activation-toggle' class='show-button'>Inactive</span>
+                    <span id='show-toggle-activation-button'>Inactive</span>
                     <input type='hidden' name='updateFunction' value='deactivate' />
-                    <input type='submit' value='Deactivate' class='btn btn-default hidden hide-button' id='hide-activation-toggle' />
+                    <input type='submit' value='Deactivate' class='btn btn-default hidden' id='hide-toggle-activation-button' />
                 @else
-                    <span id='show-activation-toggle' class='show-button'>Active</span>
+                    <span id='show-toggle-activation-button'>Active</span>
                     <input type='hidden' name='updateFunction' value='activate' />
-                    <input type='submit' value='Activate' class='btn btn-default hidden hide-button' id='hide-activation-toggle' />
+                    <input type='submit' value='Activate' class='btn btn-default hidden' id='hide-toggle-activation-button' />
                 @endif
             </form>
             - Check In Every

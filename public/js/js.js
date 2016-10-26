@@ -4,10 +4,15 @@ $(document.body).ready(function () {
         $("#" + id).addClass('hidden');
         $("#show-" + id).removeClass('hidden');
     });
-    $(document).on('click', '.hide-button', function(event){
-        var id = event.target.id.substr(5, event.target.id.length-5);
-        $("#hide-" + id).addClass('hidden');
-        $("#show-" + id).removeClass('hidden');
+    $(document).on('focusout', '#hide-toggle-activation-button', function(event){
+      console.log("HIDE");
+      $('#hide-toggle-activation-button').addClass("hidden");
+      $('#show-toggle-activation-button').removeClass("hidden");
+    });
+    $(document).on('hover', '#show-toggle-activation-button', function(event){
+      console.log("SHOW");
+      $('#show-toggle-activation-button').addClass("hidden");
+      $('#hide-toggle-activation-button').removeClass("hidden");
     });
     $(document).on('click', '.replace-primary-button', function(event){
         var id = event.target.id.substr(16, event.target.id.length-16);
