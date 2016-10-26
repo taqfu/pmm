@@ -4,6 +4,11 @@ $(document.body).ready(function () {
         $("#" + id).addClass('hidden');
         $("#show-" + id).removeClass('hidden');
     });
+    $(document).on('click', '.hide-button', function(event){
+        var id = event.target.id.substr(5, event.target.id.length-5);
+        $("#hide-" + id).addClass('hidden');
+        $("#show-" + id).removeClass('hidden');
+    });
     $(document).on('click', '.replace-primary-button', function(event){
         var id = event.target.id.substr(16, event.target.id.length-16);
         $("#" + id + "-primary").addClass('hidden');

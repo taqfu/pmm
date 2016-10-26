@@ -3,17 +3,29 @@
 ?>
 
 @forelse ($messages as $message)
-    <div id='update-message-primary' class='well'>
+    <div id='update-message-primary' class='well
+      @if ($message->activated_at==NULL)
+          bg-warning
+      @endif
+      '>
         <div class=''>
             @if ($message->ref_type=="email")
                 <strong>E-mail</strong>
             @endif
             - Created {{date("m/d/y g:i", strtotime($message->created_at))}} -
-            @if ($message->activated_at==NULL)
-                Inactive
-            @else
-                Active
-            @endif
+            <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                @if ($message->activated_at==NULL)
+                    <span id='show-activation-toggle' class='show-button'>Inactive</span>
+                    <input type='hidden' name='updateFunction' value='deactivate' />
+                    <input type='submit' value='Deactivate' class='btn btn-default hidden hide-button' id='hide-activation-toggle' />
+                @else
+                    <span id='show-activation-toggle' class='show-button'>Active</span>
+                    <input type='hidden' name='updateFunction' value='activate' />
+                    <input type='submit' value='Activate' class='btn btn-default hidden hide-button' id='hide-activation-toggle' />
+                @endif
+            </form>
             - Check In Every
             @if(substr($message->check_in_period, 0, 1)==1)
                 @if (substr($message->check_in_period, 1, 1)=="w")
@@ -50,7 +62,7 @@
                 {{substr($message->confirm_period, 0, 1)}}
                     Times Before Sending Message
             @elseif (substr($message->confirm_period, 0, 1)==1)
-                -            
+                -
                 1
                 @if (substr($message->confirm_period, 1, 1)=="w")
                     Week
@@ -61,18 +73,7 @@
 
             @endif
             @include ('Message.destroy')
-            <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
-                {{csrf_field()}}
-                {{method_field('PUT')}}
-                @if ($message->activated_at!==NULL)
-                    <input type='hidden' name='updateFunction' value='deactivate' />
-                    <input type='submit' value='Deactivate' class='btn btn-default' />
-                @else
-                    <input type='hidden' name='updateFunction' value='activate' />
-                    <input type='submit' value='Activate' class='btn btn-default'/>
-                @endif
 
-            </form>
 
             <input type='button' id='replace-primary-update-message' class='replace-primary-button btn btn-default' value='Edit' />
         </div>
