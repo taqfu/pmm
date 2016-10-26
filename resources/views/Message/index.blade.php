@@ -17,11 +17,11 @@
                 {{csrf_field()}}
                 {{method_field('PUT')}}
                 @if ($message->activated_at==NULL)
-                    <span id='show-toggle-activation-button'>Inactive</span>
+                    <span id='show-toggle-activation-button'><a href="#">Inactive</a></span>
                     <input type='hidden' name='updateFunction' value='deactivate' />
-                    <input type='submit' value='Deactivate' class='btn btn-default hidden' id='hide-toggle-activation-button' />
+                    <input type='submit' value='Deactivate' class='hidden' id='hide-toggle-activation-button' />
                 @else
-                    <span id='show-toggle-activation-button'>Active</span>
+                    <span id='show-toggle-activation-button'><a href="#">Active</a></span>
                     <input type='hidden' name='updateFunction' value='activate' />
                     <input type='submit' value='Activate' class='btn btn-default hidden' id='hide-toggle-activation-button' />
                 @endif

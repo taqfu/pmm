@@ -4,13 +4,11 @@ $(document.body).ready(function () {
         $("#" + id).addClass('hidden');
         $("#show-" + id).removeClass('hidden');
     });
-    $(document).on('focusout', '#hide-toggle-activation-button', function(event){
-      console.log("HIDE");
+    $(document).on('mouseleave', '#hide-toggle-activation-button', function(event){
       $('#hide-toggle-activation-button').addClass("hidden");
       $('#show-toggle-activation-button').removeClass("hidden");
     });
-    $(document).on('hover', '#show-toggle-activation-button', function(event){
-      console.log("SHOW");
+    $(document).on('mouseover', '#show-toggle-activation-button', function(event){
       $('#show-toggle-activation-button').addClass("hidden");
       $('#hide-toggle-activation-button').removeClass("hidden");
     });
