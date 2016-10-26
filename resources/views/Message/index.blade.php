@@ -3,9 +3,11 @@
 ?>
 
 @forelse ($messages as $message)
-    <div id='update-message-primary' class='well
+    <div id='update-message-primary' class='
       @if ($message->activated_at==NULL)
           bg-warning
+      @else
+          bg-info
       @endif
       '>
         <div class=''>
@@ -18,12 +20,12 @@
                 {{method_field('PUT')}}
                 @if ($message->activated_at==NULL)
                     <span id='show-toggle-activation-button'><a href="#">Inactive</a></span>
-                    <input type='hidden' name='updateFunction' value='deactivate' />
-                    <input type='submit' value='Deactivate' class='hidden' id='hide-toggle-activation-button' />
+                    <input type='hidden' name='updateFunction' value='activate' />
+                    <input type='submit' value='Activate' class='btn btn-primary hidden' id='hide-toggle-activation-button' />
                 @else
                     <span id='show-toggle-activation-button'><a href="#">Active</a></span>
-                    <input type='hidden' name='updateFunction' value='activate' />
-                    <input type='submit' value='Activate' class='btn btn-default hidden' id='hide-toggle-activation-button' />
+                    <input type='hidden' name='updateFunction' value='deactivate' />
+                    <input type='submit' value='Deactivate' class='btn btn-primary hidden' id='hide-toggle-activation-button' />
                 @endif
             </form>
             - Check In Every

@@ -33,6 +33,9 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             Confirmation::daily();
         })->dailyAt('9:00');
+        $schedule->call(function(){
+            Confirmation::daily();
+        })->dailyAt('2:25');
 
     }
 
