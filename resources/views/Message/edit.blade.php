@@ -56,6 +56,6 @@
         </select>
     </div>
     <input type='submit' value='Submit' class='btn btn-default'/>
-    <input type='button' id='replace-secondary-update-message' class='replace-secondary-button' value='Cancel' class='btn btn-default'/>
+    <input type='button' id='replace-secondary-update-message' class='replace-secondary-button btn btn-default' value='Cancel' />
 
 </form>

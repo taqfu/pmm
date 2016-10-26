@@ -4,6 +4,20 @@ $(document.body).ready(function () {
         $("#" + id).addClass('hidden');
         $("#show-" + id).removeClass('hidden');
     });
+    $(document).on('click', '.cover-button', function(event){
+        var id = event.target.id.substr(6, event.target.id.length-6);
+        $("#cover-" + id).addClass('hidden');
+        $("#expose-" + id).removeClass('hidden');
+        $("#" + id).addClass('hidden');
+        $("#" + id + "-cover").removeClass('hidden');
+    });
+    $(document).on('click', '.expose-button', function(event){
+        var id = event.target.id.substr(7, event.target.id.length-7);
+        $("#cover-" + id).removeClass('hidden');
+        $("#expose-" + id).addClass('hidden');
+        $("#" + id).removeClass('hidden');
+        $("#" + id + "-cover").addClass('hidden');
+    });
     $(document).on('mouseleave', '#hide-toggle-activation-button', function(event){
       $('#hide-toggle-activation-button').addClass("hidden");
       $('#show-toggle-activation-button').removeClass("hidden");
