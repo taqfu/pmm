@@ -48,9 +48,10 @@ class Confirmation extends Model
         if (Confirmation::is_it_time($message, $last_confirmation)){
             $confirmation = new Confirmation; 
             $confirmation->message_id = $message_id;
-            $confirmation->iteration = $last_confirmation->iteration++;
+            $confirmation->iteration = $last_confirmation->iteration+1;
             $confirmation->save();
         }
+        return true;
     }
         
     public static function send_multiple($user){
