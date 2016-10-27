@@ -67,7 +67,7 @@
                         @else
                             <li class="dropdown">
                                 {{ Auth::user()->name }} - 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
                                     {{ csrf_field() }}
                                     <input type='submit' class='btn-link' value='Logout' />
                                 </form>
