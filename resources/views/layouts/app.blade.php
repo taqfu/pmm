@@ -55,7 +55,6 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <a href="{{route('contact.index')}}">Contacts</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -65,7 +64,10 @@
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
+                            <li>
+                                <a href="{{route('contact.index')}}">Contacts</a>
+                            </li>
+                            <li>
                                 {{ Auth::user()->name }} -
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
                                     {{ csrf_field() }}
