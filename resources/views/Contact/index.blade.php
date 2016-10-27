@@ -3,8 +3,8 @@
     @include ("Contact.create")
     @foreach ($contacts as $contact)
     <div>
-        {{$contact->name}}
         @include ("Contact.destroy")
+        {{$contact->name}}
     </div>
     @endforeach
 @endsection
