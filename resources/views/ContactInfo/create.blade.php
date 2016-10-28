@@ -14,7 +14,8 @@
         </div>
     </div><div class='inline'>
         <input type='text' name='info' />
-        <input type='submit' value='New Contact Info' />
+        <input type='submit' value='New Info' />
+        <input type='button' id='cancel-create-contact-info{{$contact->id}}' class='cancel-button' value='Cancel' />
     </div>
 
 </form>
