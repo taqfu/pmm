@@ -29,4 +29,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('contact','ContactController');
+Route::resource('ContactInfo','ContactInfoController');
 Route::resource('message','MessageController');

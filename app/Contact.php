@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    public function info(){
+    public function infos(){
         return $this->belongsTo('App\ContactInfo');
     }
 }
