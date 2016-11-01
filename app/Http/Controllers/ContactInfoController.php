@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\ContactInfo;
+
+use Auth;
 class ContactInfoController extends Controller
 {
     /**
@@ -36,10 +38,21 @@ class ContactInfoController extends Controller
      */
     public function store(Request $request)
     {
+        $contact_info_types = [];
         $contact_info = new ContactInfo;
         $contact_info->user_id = Auth::user()->id;
         $contact_info->contact_id = $request->contactID;
-        var_dump($request->typeOrCustom);
+        if ($request->typeOrCustom=="type"){
+            if ($contact_info_types){ //check that this is in an array
+                $contact_info->type = $request->type;
+            }
+        } else if ($request->typeOrCustom=="custom"){
+            $contact_info->custom = $request->custom;
+
+        }
+        $contact_info->info = $request->info;
+        $contact_info->save();
+        return back();
     }
 
     /**
@@ -84,6 +97,7 @@ class ContactInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ContactInfo::find($id)->destroy();
+        return back();
     }
 }
