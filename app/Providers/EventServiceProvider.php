@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
+use App\User;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Event::listen('auth.login', function($event){
-            Message::check_in_user(Auth::user()->id);
+            User::check_in(Auth::user()->id);
         });
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\ContactInfo;
 class ContactInfoController extends Controller
 {
     /**
@@ -36,7 +36,10 @@ class ContactInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contact_info = new ContactInfo;
+        $contact_info->user_id = Auth::user()->id;
+        $contact_info->contact_id = $request->contactID;
+        var_dump($request->typeOrCustom);
     }
 
     /**

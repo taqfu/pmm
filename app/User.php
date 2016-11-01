@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function check_in($id){
+        $messages = Message::where('user_id', $id)->where('sent_at', null)->where('activated_at', '!=', null)->get();
+        foreach($messages as $message){
+            $new_check_in = new DateTime();
+            if (substr($message->check_in_period, 1, 1)=="d"){
+                $new_check_in
+                  ->add(new DateInterval('P' . substr($message->check_in_period, 0, 1) . 'D'));
+            } else if (substr($message->check_in_period, 1, 1)=="w"){
+                $new_check_in
+                  ->add(new DateInterval('P' . substr($message->check_in_period, 0, 1) . 'W'));
+            }
+            $message->check_in_due = $new_check_in->format("Y-m-d H:i:s");
+            $message->save();
+        }
+    }
 }

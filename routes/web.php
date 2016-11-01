@@ -10,14 +10,15 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-use App\Message;
 use App\Confirmation;
-
+use App\Message;
+use App\User;
 Route::get('/', function () {
+    Message::checkAll();
     if (Auth::guest()){
         return view('welcome');
     } else if (Auth::user()){
-        Message::check_in_user(Auth::user()->id);
+        User::check_in(Auth::user()->id);
         return view('welcome', [
             "messages"=>Message::where('user_id', Auth::user()->id)->get(),
         ]);
