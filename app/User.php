@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use DateTime;
+use DateInterval;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -40,6 +42,11 @@ class User extends Authenticatable
             }
             $message->check_in_due = $new_check_in->format("Y-m-d H:i:s");
             $message->save();
+            $confirmation=new Confirmation;
+            $confirmation->message_id = $message->id;
+            $confirmation->iteration = 0;
+            $confirmation->created_at = date("Y-m-d H:i:s");
+            $confirmation->save();
         }
     }
 }

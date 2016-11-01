@@ -14,7 +14,9 @@ class Email extends Model
             $user = User::find($email->user_id);
             $m->to($email->send_to, $user->name . " c/o Words Prevail")
               ->subject('E-mail from ' . $user->name . " sent using Words Prevail");
-            
         });
+        $message = Message::find($message->id);
+        $message->sent_at = date("Y-m-d H:i:s");
+        $message->save();
     }
 }
