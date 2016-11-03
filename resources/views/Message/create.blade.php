@@ -1,6 +1,6 @@
 <input type='button' id='show-create-message' class='show-button btn btn-default' value='New Message'/>
 
-<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden'>
+<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden margin-left'>
     <div class='inline'>
         @include ("Email.create")
 
@@ -29,7 +29,7 @@
                 @endfor
             </select>
         </div>
-        <input type='button' id='cancel-create-message' class='cancel-button btn btn-default' 
+        <input type='button' id='cancel-create-message' class='cancel-button btn btn-default'
           value='Cancel' />
         <input type='submit' value='Submit' class='btn btn-default'/>
     </div>
