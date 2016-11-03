@@ -1,11 +1,19 @@
 $(document.body).ready(function () {
     $(document).on('change', '[name=confirmPeriod]', function(event){
-        console.log($("[name=confirmPeriod]:checked").val());
-        $("#confirm-iterations").addClass('hidden');
+        if($("[name=confirmPeriod]:checked").val()=='immediately'){
+            $("#confirm-iterations").addClass('hidden');
+        } else {
+            $("#confirm-iterations").removeClass('hidden');
+        }
+
     });
     $(document).on('change', '[name=checkInEvery]', function(event){
-        console.log($("[name=checkInEvery]").val());
-        $(".plural").addClass('hidden');
+        if($("[name=checkInEvery]").val()==1){
+            $(".plural").addClass('hidden');
+        } else {
+            $(".plural").removeClass('hidden');
+        }
+
     });
     $(document).on('click', '.cancel-button', function(event){
         var id = event.target.id.substr(7, event.target.id.length-7);

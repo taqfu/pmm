@@ -13,8 +13,8 @@
                   <option value="{{$num}}">{{$num}}</option>
                 @endfor
             </select>
-            <input type='radio' name='checkInPeriod' value='day' checked />day<span class='plural'>s</span>
-            <input type='radio' name='checkInPeriod' value='week'/>week<span class='plural'>s</span>
+            <input type='radio' name='checkInPeriod' value='day' checked />day<span class='plural hidden'>s</span>
+            <input type='radio' name='checkInPeriod' value='week'/>week<span class='plural hidden'>s</span>
         </div>
         <div class='create-message-caption'>If you don't respond, how often should we contact you before sending this message?</div>
         <div>
@@ -22,7 +22,7 @@
             <input type='radio' name='confirmPeriod' value='day' /> Every Day
             <input type='radio' name='confirmPeriod' value='week' /> Every Week
         </div>
-        <div id='confirm-iterations' class='create-message-caption'>How many times do you want us to try to contact you before we send out this message?
+        <div id='confirm-iterations' class='create-message-caption hidden'>How many times do you want us to try to contact you before we send out this message?
             <select name='confirmIterations'>
                 @for($num=1;$num<9;$num++){
                   <option value="{{$num}}">{{$num}}</option>
