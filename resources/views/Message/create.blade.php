@@ -1,6 +1,6 @@
 <input type='button' id='show-create-message' class='show-button btn btn-default' value='New Message'/>
 
-<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden text-center'>
+<form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden'>
     <div class='inline'>
         @include ("Email.create")
 
@@ -13,8 +13,8 @@
                   <option value="{{$num}}">{{$num}}</option>
                 @endfor
             </select>
-            <input type='radio' name='checkInPeriod' value='day' />days
-            <input type='radio' name='checkInPeriod' value='week' checked />weeks
+            <input type='radio' name='checkInPeriod' value='day' checked />days
+            <input type='radio' name='checkInPeriod' value='week'/>weeks
         </div>
         <div>If you don't respond, how often should we contact you before sending this message?</div>
         <div>
@@ -29,7 +29,8 @@
                 @endfor
             </select>
         </div>
+        <input type='button' id='cancel-create-message' class='cancel-button btn btn-default' 
+          value='Cancel' />
         <input type='submit' value='Submit' class='btn btn-default'/>
-        <input type='button' id='cancel-create-message' class='cancel-button btn btn-default' value='Cancel' />
     </div>
 </form>

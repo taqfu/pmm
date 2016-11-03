@@ -65,9 +65,6 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li>
-                                <a href="{{route('contact.index')}}">Contacts</a>
-                            </li>
-                            <li>
                                 {{ Auth::user()->name }} -
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
                                     {{ csrf_field() }}

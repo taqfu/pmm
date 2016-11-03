@@ -6,7 +6,7 @@
             <input type='radio' name='typeOrCustom' value='type' checked/>
             Type:
             <select name='type' class='form-control'>
-                <option value='email' selected>E-mail</option>
+                <option value='E-mail' selected>E-mail</option>
             </select>
             <input type='radio' name='typeOrCustom' value='custom' />
             Custom:

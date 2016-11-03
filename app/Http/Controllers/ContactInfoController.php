@@ -43,7 +43,7 @@ class ContactInfoController extends Controller
         $contact_info->user_id = Auth::user()->id;
         $contact_info->contact_id = $request->contactID;
         if ($request->typeOrCustom=="type"){
-            if ($contact_info_types){ //check that this is in an array
+            if (true){ //check that this is in an array
                 $contact_info->type = $request->type;
             }
         } else if ($request->typeOrCustom=="custom"){

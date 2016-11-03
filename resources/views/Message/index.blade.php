@@ -3,10 +3,10 @@
 ?>
 
 @forelse ($messages as $message)
+    
     <div id='update-message-primary' class='
       @if ($message->sent_at!=null)
-            bg-primary
-      @if ($message->sent_at==null && $message->activated_at==NULL)
+      @elseif ($message->sent_at==null && $message->activated_at==NULL)
           bg-warning
       @else
           bg-info
@@ -20,7 +20,7 @@
 
             @if ($message->sent_at!=NULL)
                 Sent: {{date("m/d/y g:i", strtotime($message->sent_at))}}
-            @else if ($messsage->sent_at==null)
+            @elseif ($message->sent_at==null)
                 <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
                     {{csrf_field()}}
                     {{method_field('PUT')}}
@@ -97,3 +97,4 @@
 @empty
     You have no messages.
 @endforelse
+
