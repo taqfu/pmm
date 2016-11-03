@@ -3,7 +3,7 @@
 ?>
 
 @forelse ($messages as $message)
-    
+
     <div id='update-message-primary' class='
       @if ($message->sent_at!=null)
       @elseif ($message->sent_at==null && $message->activated_at==NULL)
@@ -95,6 +95,5 @@
     @include('Message.edit')
 
 @empty
-    You have no messages.
+    <div>You have no messages.</div>
 @endforelse
-

@@ -1,4 +1,12 @@
 $(document.body).ready(function () {
+    $(document).on('change', '[name=confirmPeriod]', function(event){
+        console.log($("[name=confirmPeriod]:checked").val());
+        $("#confirm-iterations").addClass('hidden');
+    });
+    $(document).on('change', '[name=checkInEvery]', function(event){
+        console.log($("[name=checkInEvery]").val());
+        $(".plural").addClass('hidden');
+    });
     $(document).on('click', '.cancel-button', function(event){
         var id = event.target.id.substr(7, event.target.id.length-7);
         $("#" + id).addClass('hidden');

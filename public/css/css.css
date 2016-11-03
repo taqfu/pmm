@@ -10,6 +10,9 @@
 .padding-left{
     padding-left:20px;
 }
+.create-email-caption, .create-message-caption{
+    font-weight:bold;
+}
 #update-message-primary{
     padding:20px;
 }
