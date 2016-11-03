@@ -6,7 +6,7 @@
 
         {{csrf_field()}}
         <div class='create-message-caption'>How often do you want to check in for this message?</div>
-        <div>
+        <div class='create-message-answers'>
             Every
             <select name='checkInEvery'>
                 @for($num=1;$num<9;$num++){
@@ -17,7 +17,7 @@
             <input type='radio' name='checkInPeriod' value='week'/>week<span class='plural hidden'>s</span>
         </div>
         <div class='create-message-caption'>If you don't respond, how often should we contact you before sending this message?</div>
-        <div>
+        <div  class='create-message-answers'>
             <input type='radio' name='confirmPeriod' value='immediately' checked /> Immediately
             <input type='radio' name='confirmPeriod' value='day' /> Every Day
             <input type='radio' name='confirmPeriod' value='week' /> Every Week

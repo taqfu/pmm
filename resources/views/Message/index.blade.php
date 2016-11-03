@@ -95,5 +95,5 @@
     @include('Message.edit')
 
 @empty
-    <div>You have no messages.</div>
+    <div class='margin-left'><strong>You have no messages.</strong></div>
 @endforelse
