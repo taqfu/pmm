@@ -12,7 +12,8 @@ class Email extends Model
         $email = Email::find($message->ref_id);
         Mail::send('email.template', ['body'=>$email->body], function ($m) use ($email) {
             $user = User::find($email->user_id);
-            $m->to($email->send_to, $user->name . " c/o Words Prevail")
+            $m->from($user->email, $user->name)
+              ->to($email->send_to)
               ->subject('E-mail from ' . $user->name . " sent using Words Prevail");
         });
         $message = Message::find($message->id);
