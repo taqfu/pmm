@@ -19,7 +19,7 @@ Route::get('/', function () {
     } else if (Auth::user()){
         User::check_in(Auth::user()->id);
         return view('welcome', [
-            "messages"=>Message::where('user_id', Auth::user()->id)->get(),
+            "messages"=>Message::where('user_id', Auth::user()->id)->orderBy("check_in_due", "desc")->get(),
         ]);
     }
 });

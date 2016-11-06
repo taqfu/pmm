@@ -20,9 +20,6 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return View('Message.index', [
-            "messages"=>Message::where('user_id', Auth::user()->id)->orderBy("check_in_due", "desc")->get(),
-        ]);
     }
 
     /**
