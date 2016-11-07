@@ -4,6 +4,9 @@
 .inline{
     display:inline;
 }
+.margin{
+    margin:20px;
+}
 .margin-left{
     margin-left:20px;
 }

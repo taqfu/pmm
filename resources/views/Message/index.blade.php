@@ -4,7 +4,7 @@
 
 @forelse ($messages as $message)
 
-    <div id='update-message-primary' class='
+    <div id='update-message-primary' class='margin
       @if ($message->sent_at!=null)
       @elseif ($message->sent_at==null && $message->activated_at==NULL)
           bg-warning
