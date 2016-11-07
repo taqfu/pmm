@@ -42,6 +42,7 @@ class MessageController extends Controller
     {
         $mysql_timestamp = 'Y-m-d H:i:s';
         $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
+
         if (substr($request->checkInPeriod,0,1)=="w"){
             $check_in_due =
               date($mysql_timestamp,
@@ -56,12 +57,17 @@ class MessageController extends Controller
         } else {
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
         }
+        if ($request->messageType=="email"){
+            if (Message::email_already_active($request->emailSendTo)){
+                return back()->withErrors("There is alaready an email being sent to that email address. Available to Premium Members!");
+            }
 
-        $email = new Email;
-        $email->user_id = Auth::user()->id;
-        $email->body = $request->emailBody;
-        $email->send_to = $request->emailSendTo;
-        $email->save();
+            $email = new Email;
+            $email->user_id = Auth::user()->id;
+            $email->body = $request->emailBody;
+            $email->send_to = $request->emailSendTo;
+            $email->save();
+        }
         $message = new Message;
         $message->user_id = Auth::user()->id;
         $message->activated_at = date($mysql_timestamp);

@@ -1,10 +1,11 @@
-<input type='button' id='show-create-message' class='show-button btn btn-default' value='New Message'/>
+<input type='button' id='show-create-message' class='show-button btn btn-default margin-left' value='New Message'/>
 
 <form id='create-message' method="POST" action="{{route('message.store')}}" class='hidden margin-left'>
     <div class='inline'>
+        {{csrf_field()}}
+        <input type='hidden' name='messageType' value='email' />
         @include ("Email.create")
 
-        {{csrf_field()}}
         <div class='create-message-caption'>How often do you want to check in for this message?</div>
         <div class='create-message-answers'>
             Every
