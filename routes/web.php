@@ -24,7 +24,10 @@ Route::get('/', function () {
         ]);
     }
 });
-
+Route::get('/verify/{email}/confirm/{confirmation_code}', [
+    'as' => 'confirmation_path',
+    'uses' => 'RegisterController@verify'
+]);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
