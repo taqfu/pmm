@@ -59,7 +59,7 @@ class MessageController extends Controller
         }
         if ($request->messageType=="email"){
             if (Message::email_already_active($request->emailSendTo)){
-                return back()->withErrors("There is already an email being sent to that email address. Sign up for premium membership to be able to do this!");
+                return back()->withErrors("There is already an email registered to be sent out with that email address. Sign up for premium membership to be able to do this!");
             }
 
             $email = new Email;
