@@ -41,6 +41,13 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $mysql_timestamp = 'Y-m-d H:i:s';
+        if (Auth::guest()){
+            return back->withErrors("You must logged in in order to do this.");
+        }
+
+        if ($request->checkInEvery>8 || $request->checkInEvery<1 || $request->checkInPeriod != "day" || $request->checkInPeriod != "week"){
+            return back->withErrors("Error Code ?");
+        }
         $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
 
         if (substr($request->checkInPeriod,0,1)=="w"){
@@ -51,21 +58,26 @@ class MessageController extends Controller
             $check_in_due =
               date($mysql_timestamp,
               strtotime('+' . $request->checkInEvery . ' day', time()));
+        } else {
+            return back->withErrors("Error Code ?");
         }
+
         if ($request->confirmPeriod=="immediately"){
             $confirm_period = 0;
-        } else {
+        } else if (substr($request->confirmPeriod, 0, 1)=="d" || substr($request->confirmPeriod, 0, 1)=="w" ){
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
+        } else {
+            return back->withErrors("Error Code ?");
         }
         if ($request->messageType=="email"){
-            if (Message::email_already_active($request->emailSendTo)){
-                return back()->withErrors("There is already an email registered to be sent out with that email address. Sign up for premium membership to be able to do this!");
+            if (Message::email_already_active(trim($request->emailSendTo))){
+                return back()->withErrors("There is already an email being sent to that email address. Sign up for premium membership to be able to do this!");
             }
 
             $email = new Email;
             $email->user_id = Auth::user()->id;
             $email->body = $request->emailBody;
-            $email->send_to = $request->emailSendTo;
+            $email->send_to = trim($request->emailSendTo);
             $email->save();
         }
         $message = new Message;

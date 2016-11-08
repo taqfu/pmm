@@ -30,8 +30,9 @@
                 @endfor
             </select>
         </div>
+        <input type='submit' value='Submit' class='btn btn-default'/>
+
         <input type='button' id='cancel-create-message' class='cancel-button btn btn-default'
           value='Cancel' />
-        <input type='submit' value='Submit' class='btn btn-default'/>
     </div>
 </form>
