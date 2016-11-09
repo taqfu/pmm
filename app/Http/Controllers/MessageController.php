@@ -42,11 +42,11 @@ class MessageController extends Controller
     {
         $mysql_timestamp = 'Y-m-d H:i:s';
         if (Auth::guest()){
-            return back->withErrors("You must logged in in order to do this.");
+            return back()->withErrors("You must logged in in order to do this.");
         }
 
-        if ($request->checkInEvery>8 || $request->checkInEvery<1 || $request->checkInPeriod != "day" || $request->checkInPeriod != "week"){
-            return back->withErrors("Error Code ?");
+        if ($request->checkInEvery>8 || $request->checkInEvery<1){
+            return back()->withErrors("Error Code ?");
         }
         $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
 
@@ -59,7 +59,7 @@ class MessageController extends Controller
               date($mysql_timestamp,
               strtotime('+' . $request->checkInEvery . ' day', time()));
         } else {
-            return back->withErrors("Error Code ?");
+            return back()->withErrors("Error Code ?");
         }
 
         if ($request->confirmPeriod=="immediately"){
@@ -67,7 +67,7 @@ class MessageController extends Controller
         } else if (substr($request->confirmPeriod, 0, 1)=="d" || substr($request->confirmPeriod, 0, 1)=="w" ){
             $confirm_period = $request->confirmIterations . substr($request->confirmPeriod, 0, 1);
         } else {
-            return back->withErrors("Error Code ?");
+            return back()->withErrors("Error Code ?");
         }
         if ($request->messageType=="email"){
             if (Message::email_already_active(trim($request->emailSendTo))){

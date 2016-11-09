@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 Route::get('/verify/{email}/confirm/{confirmation_code}', [
     'as' => 'confirmation_path',
-    'uses' => 'RegisterController@verify'
+    'uses' => 'UserController@verify'
 ]);
 Auth::routes();
 

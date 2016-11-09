@@ -9,7 +9,7 @@
         <div>
             Thanks for creating an account with Words Prevail!
             Please follow the link below to verify your email address
-            {{ URL::to('/verify/' . $email '/confirm/' . $confirmation_code) }}.<br/>
+            {{ URL::to('/verify/' . $email . '/confirm/' . $confirmation_code) }}.<br/>
 
         </div>
 
