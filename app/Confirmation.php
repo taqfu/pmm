@@ -14,7 +14,7 @@ class Confirmation extends Model
         $last_confirmation = Confirmation::fetch_last($message_id);
         $date = new Datetime($last_confirmation->created_at);
         $now = new DateTime();
-        $date->add(new DateInterval('P1H'));
+        $date->add(new DateInterval('PT1H'));
         if ($date<=$now){
             return true;
         }
