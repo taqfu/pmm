@@ -78,23 +78,5 @@ class RegisterController extends Controller
 
 
     }
-    public function verify($email, $confirmation_code){
-        if( ! $confirmation_code){
-            throw new InvalidConfirmationCodeException;
-        }
 
-        $user = User::where('email', $email)->where('confirmation_code', $confirmation_code)->first();
-
-        if ( ! $user){
-            throw new InvalidConfirmationCodeException;
-        }
-
-        $user->confirmed = 1;
-        $user->confirmation_code = null;
-        $user->save();
-
-        Flash::message('You have successfully verified your account.');
-        return Redirect::route('login_path');
-
-    }
 }
