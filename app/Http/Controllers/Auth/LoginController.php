@@ -37,6 +37,12 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
     public function isUserConfirmed(){
-        return var_dump($this);  
+        return var_dump($this);
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        if (Auth::user()->confirmation_code!=null){
+            Auth::logout();
+        }
     }
 }
