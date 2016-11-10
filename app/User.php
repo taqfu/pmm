@@ -42,11 +42,17 @@ class User extends Authenticatable
             }
             $message->check_in_due = $new_check_in->format("Y-m-d H:i:s");
             $message->save();
-            $confirmation=new Confirmation;
-            $confirmation->message_id = $message->id;
-            $confirmation->iteration = 0;
-            $confirmation->created_at = date("Y-m-d H:i:s");
-            $confirmation->save();
+            if (Confirmation::has_it_been_more_than_an_hour_since_last_one($message->id)){
+                $confirmation=new Confirmation;
+                $confirmation->message_id = $message->id;
+                $confirmation->iteration = 0;
+                $confirmation->created_at = date("Y-m-d H:i:s");
+                $confirmation->save();
+            } else {
+                $last_confirmation = Confirmation::fetch_last($message->id);
+                $last_confirmation->created_at = date("Y-m-d H:i:s");
+                $last_confirmation->save();
+            }
         }
     }
 }

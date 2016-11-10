@@ -24,10 +24,12 @@ class Message extends Model
         $messages = Message::where('check_in_due', '<', date( 'Y-m-d H:i:s'))
           ->whereNull('sent_at')->get();
         foreach($messages as $message){
-            if ($message->ref_type=="email" && !Confirmation::need_to_confirm($message->id)){
+            $last_confirmation = Confirmation::fetch_last($message_id);
+            if ($message->ref_type=="email" && !Confirmation::need_to_confirm($message->id) && Confirmation::is_it_time($message, $last_confirmation)){
                 Email::sendOut($message);
             }
         }
 
     }
+
 }
