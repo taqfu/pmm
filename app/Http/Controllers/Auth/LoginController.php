@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -39,7 +40,7 @@ class LoginController extends Controller
     public function isUserConfirmed(){
         return var_dump($this);
     }
-    protected function authenticated(Request $request, $user)
+    protected function authenticated( $request, $user)
     {
         if (Auth::user()->confirmation_code!=null){
             Auth::logout();
