@@ -23,6 +23,9 @@ Route::get('/', function () {
         ]);
     }
 });
+Route::get('/logout', function(){
+    Auth::logout();
+})
 Route::get('/verify/{email}/confirm/{confirmation_code}', [
     'as' => 'confirmation_path',
     'uses' => 'UserController@verify'
