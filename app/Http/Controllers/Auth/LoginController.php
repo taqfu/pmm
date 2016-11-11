@@ -42,8 +42,9 @@ class LoginController extends Controller
     }
     protected function authenticated( $request, $user)
     {
-        if (Auth::user()->confirmation_code!=null){
+        if (!Auth::user()->confirmed){
             Auth::logout();
+            return View('errors.userNeedsConfirmation');
         }
     }
 }
