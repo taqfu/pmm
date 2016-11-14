@@ -15,22 +15,24 @@ use App\Message;
 use App\User;
 Auth::routes();
 
-Route::get('/', function (Request $request) {
-    var_dump($request->all());
-    
-    if (Auth::guest()){
-        return view('welcome', [
-    ]);
-    } else if (Auth::user()){
-        User::check_in(Auth::user()->id);
-        return view('welcome', [
-            "messages"=>Message::where('user_id', Auth::user()->id)
-              ->orderBy("check_in_due", "desc")->get(),
-        ]);
-    }
-});
-Route::get('/logout', function(){
+Route::get('/', [
+        'as'=>'root', 
+        function (Request $request) {
+            if (Auth::guest()){
+                return view('welcome', [
+            ]);
+            } else if (Auth::user()){
+                User::check_in(Auth::user()->id);
+                return view('welcome', [
+                    "messages"=>Message::where('user_id', Auth::user()->id)
+                      ->orderBy("check_in_due", "desc")->get(),
+                ]);
+            }
+
+}]);
+Route::get('/logout', function(Request $request){
     Auth::logout();
+    return view ('errors.userNeedsConfirmation');
 });
 Route::get('/verify/{email}/confirm/{confirmation_code}', [
     'as' => 'confirmation_path',

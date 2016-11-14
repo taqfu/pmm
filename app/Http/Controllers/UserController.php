@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 
+use Auth;
+
 class UserController extends Controller
 {
     //
@@ -27,6 +29,7 @@ class UserController extends Controller
         $user->confirmed = 1;
         $user->confirmation_code = null;
         $user->save();
-        return redirect("/?email_verified=1");
+        Auth::loginUsingId($user->id);
+        return redirect("/");
     }
 }
