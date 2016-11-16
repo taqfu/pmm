@@ -65,4 +65,9 @@
         </div>
     </div>
 </div>
+<div class='text-center'>
+    Log In:
+    <a href="redirect/facebook">Facebook</a>
+    <a href="redirect/google">Google</a>
+</div>
 @endsection

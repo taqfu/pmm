@@ -13,6 +13,16 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'facebook'=>[
+        'client_id'=>env('FB_ID'),
+        'client_secret'=>env('FB_SECRET'),
+        'redirect'=>env('APP_URL') . '/callback/facebook',
+    ],
+    'google'=>[
+        'client_id'=>env('GOOGLE_ID'),
+        'client_secret'=>env('GOOGLE_SECRET'),
+        'redirect'=>env('APP_URL') . '/callback/google',
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
