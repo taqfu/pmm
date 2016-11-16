@@ -30,6 +30,6 @@ class UserController extends Controller
         $user->confirmation_code = null;
         $user->save();
         Auth::loginUsingId($user->id);
-        return redirect("/");
+        return redirect("/?verified=1");
     }
 }
