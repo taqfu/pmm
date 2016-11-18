@@ -21,6 +21,5 @@ class SocialAuthController extends Controller
         $user = $service->createOrGetUser(Socialite::driver($provider));
 
         auth()->login($user);
-        var_dump("LOGIN CLEARED");
     }
 }
