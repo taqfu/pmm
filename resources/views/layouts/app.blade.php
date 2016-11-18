@@ -65,7 +65,9 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li>
-                                {{ Auth::user()->name }} -
+                                <a href="{{route('user.settings')}}">
+                                    {{ Auth::user()->name }}
+                                </a> -
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
                                     {{ csrf_field() }}
                                     <input type='submit' class='btn-link' value='Logout' />

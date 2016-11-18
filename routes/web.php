@@ -42,7 +42,7 @@ Route::get('/verify/{email}/confirm/{confirmation_code}', [
 ]);
 
 Route::get('/home', 'HomeController@index');
-
+Route::get('user.settings', 'UserController@settings')
 Route::resource('contact','ContactController');
 Route::resource('ContactInfo','ContactInfoController');
 Route::resource('message','MessageController');

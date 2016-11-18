@@ -11,7 +11,9 @@ use Auth;
 
 class UserController extends Controller
 {
-    //
+    public function settings(){
+        return View('User.settings');
+    }
     public function verify($email, $confirmation_code){
         if( ! $confirmation_code){
             return View('errors.confirmationInvalid');
