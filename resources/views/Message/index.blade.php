@@ -1,5 +1,6 @@
 <?php
     use App\Email;
+    use App\User;
 ?>
 
 @forelse ($messages as $message)
@@ -16,10 +17,13 @@
             @if ($message->ref_type=="email")
                 <strong>E-mail</strong>
             @endif
-            - Created {{date("m/d/y g:i", strtotime($message->created_at))}} -
+            - Created 
+            {{date('m/d/y g:i', 
+              User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}} -
 
             @if ($message->sent_at!=NULL)
-                Sent: {{date("m/d/y g:i", strtotime($message->sent_at))}}
+                Sent: {{date('m/d/y g:i', 
+                  User::local_time(Auth::user()->timezone, strtotime($message->sent_at)))}} -
             @elseif ($message->sent_at==null)
                 <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
                     {{csrf_field()}}
@@ -56,7 +60,8 @@
                 @if ($message->activated_at==NULL)
                     N/A
                 @else
-                    {{date("m/d/y g:i", strtotime($message->check_in_due))}}
+                    {{date('m/d/y g:i', 
+                      User::local_time(Auth::user()->timezone, strtotime($message->check_in_due)))}}
                 @endif
 
                 @if (substr($message->confirm_period, 0, 1)>1)

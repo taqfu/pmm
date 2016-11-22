@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Config;
 use DateTime;
 use DateInterval;
 class User extends Authenticatable
@@ -55,6 +56,7 @@ class User extends Authenticatable
             }
         }
     }
+
     public static function local_time($timezone, $timestamp){
         if ($timezone == Config::get('app.timezone')){
             return $timestamp;
@@ -65,6 +67,7 @@ class User extends Authenticatable
       date_default_timezone_set(Config::get('app.timezone'));
       return $timestamp - ($original_timezone-$timezone);
     }
+
     public static function local_now($date_format){
         if (Auth::user()->timezone == Config::get('app.timezone')){
             return date($date_format);

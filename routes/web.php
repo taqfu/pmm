@@ -43,7 +43,9 @@ Route::get('/verify/{email}/confirm/{confirmation_code}', [
 
 Route::get('/home', 'HomeController@index');
 Route::get('/settings', ['as'=>'user.settings', 'uses'=>'UserController@settings']);
-Route::put('/settings/time-zone', ['as'=>'timezone-change', 'uses'=>'UserController@timezone_change']);
+Route::put("/settings/timezone-change", ['as'=>'timezone-change', 'uses'=>'UserController@updateTimeZone']);
+Route::put("/settings/name-change", ['as'=>'name-change', 'uses'=>'UserController@updateName']);
+Route::put("/settings/email-change", ['as'=>'email-change', 'uses'=>'UserController@updateEmail']);
 Route::resource('contact','ContactController');
 Route::resource('ContactInfo','ContactInfoController');
 Route::resource('message','MessageController');

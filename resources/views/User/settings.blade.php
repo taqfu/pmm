@@ -1,6 +1,8 @@
 @extends ('layouts.app')
 @section('content')
-<div id='time-zone-settings' class='hidden'>
+
+
+<div id='time-zone-settings'>
     <p class='margin-left'>
         Your time-zone is: {{Auth::user()->timezone}}
     </p>
