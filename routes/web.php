@@ -21,7 +21,7 @@ Route::get('/', [
         'as'=>'root',
         function (Request $request) {
             if (Auth::guest()){
-                return view('welcome', [
+                return view('public', [
             ]);
             } else if (Auth::user()){
                 User::check_in(Auth::user()->id);
