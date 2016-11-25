@@ -2,7 +2,7 @@
     $site_root =
       $_SERVER['SERVER_NAME']=="taqfu.com"
       ? "http://taqfu.com/dev-env/pmm/public/"
-      : $_SERVER['SERVER_NAME'];
+      : "http://wordsprevail.com/";
 ?>
 <!DOCTYPE html>
 <html lang="en">

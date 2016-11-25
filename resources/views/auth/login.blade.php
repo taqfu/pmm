@@ -1,4 +1,4 @@
-<div class="container">
+<div id='login-menu-secondary' class="container hidden">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
@@ -38,6 +38,10 @@
                                     <label>
                                         <input type="checkbox" name="remember"> Remember Me
                                     </label>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                    Forgot Your Password?
+                                </a>
+                                <a href="{{ url('/register') }}">Sign Up</a>
                                 </div>
                             </div>
                         </div>
@@ -47,19 +51,17 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
+                                <input type='button' id='replace-secondary-login-menu' class='btn btn-primary replace-secondary-button' value='Cancel' />
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                                <a href="{{ url('/register') }}">Sign Up</a>
                             </div>
                         </div>
                     </form>
         </div>
     </div>
 </div>
-<div class='text-center'>
+<div id='login-menu-primary' class='text-center'>
     Log In Using:
     <a href="redirect/facebook">Facebook</a> / 
-    <a href="redirect/google">Google</a>
+    <a href="redirect/google">Google</a> / 
+    <a href='#' id='replace-primary-login-menu' class='replace-primary-button' >E-mail</a>
 </div>
