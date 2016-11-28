@@ -25,12 +25,10 @@ Route::get('/', [
             ]);
             } else if (Auth::user()){
                 User::check_in(Auth::user()->id);
-                Message::fetch_next_message_going_out();
-                /*
                 return view('welcome', [
                     "messages"=>Message::where('user_id', Auth::user()->id)
                       ->orderBy("check_in_due", "desc")->get(),
-                ]);*/
+                ]);
             }
 
 }]);
