@@ -3,7 +3,7 @@
 @section('content')
     
     <div class='text-center'>
-        <img src='/logo.png' class='img-responsive' />
+        <img src='/logo.png' class='img-responsive center-block' />
     </div>
     <div class='row text-center lead'>
         <strong>Words Prevail</strong> will send out a message if something happens to you. 
