@@ -37,7 +37,8 @@ class Message extends Model
           ->whereNull('sent_at')->get();
         foreach($messages as $message){
                 $last_confirmation = Confirmation::fetch_last($message->id);
-                var_dump(substr($message->confirm_period, 0, 1) - $last_confirmation);
+                $num_of_day_left_to_confirm = $message->confirm_period, 0, 1) 
+                  - $last_confirmation->iteration);
         }
 
     }
