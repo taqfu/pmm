@@ -69,7 +69,6 @@ class Confirmation extends Model
     }
 
     public static function send_multiple($user){
-        echo "Confirmation email sent!";
         Mail::send('email.confirmation',
           ['num_of_messages'=>$user->confirmations],
           function ($m) use ($user) {
