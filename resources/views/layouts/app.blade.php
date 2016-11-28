@@ -34,18 +34,23 @@
 </head>
 <body>
     <div id="app">
-                        @if (Auth::user())
-                                <a href="{{route('user.settings')}}">
-                                    {{ Auth::user()->name }}
-                                </a> -
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
-                                    {{ csrf_field() }}
-                                    <input type='submit' class='btn-link' value='Logout' />
-                                </form>
-                        @endif
+            
+        <nav class='row'>
+            <div class='col-md-6 lead'>
+                <a href="{{url('/')}}" class='margin-left'>Words Prevail</a>
             </div>
+            @if (Auth::user())
+                <div class='col-md-6 text-right '>
+                    <a href="{{route('user.settings')}}">
+                        {{ Auth::user()->name }}
+                    </a> -
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
+                        {{ csrf_field() }}
+                        <input type='submit' class='btn-link' value='Logout' />
+                    </form>
+                </div>
+            @endif
         </nav>
-
         @yield('content')
     </div>
 
