@@ -69,8 +69,13 @@ class Confirmation extends Model
     }
 
     public static function send_multiple($user){
+        $next_message = Message::fetch_next_message_going_out($user->id);
+        if ($next_message==null){
+            return;
+        }
+        $num_of_days = Message::fetch_num_of_days_until_message_is_sent($next_message->id);
         Mail::send('email.confirmation',
-          ['num_of_messages'=>$user->confirmations],
+          ['num_of_messages'=>$user->confirmations, "next_message"=>$next_message, "num_of_days"=>$num_of_days],
           function ($m) use ($user) {
             $m->to($user->email, "Words Prevail")->subject($user->name . "!
               Please log into Words Prevail before your messages are sent out.");

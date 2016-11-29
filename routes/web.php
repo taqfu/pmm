@@ -22,7 +22,7 @@ Route::get('/', [
         function (Request $request) {
             if (Auth::guest()){
                 return view('public', [
-            ]);
+                ]);
             } else if (Auth::user()){
                 User::check_in(Auth::user()->id);
                 return view('welcome', [

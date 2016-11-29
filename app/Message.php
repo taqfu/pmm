@@ -31,15 +31,33 @@ class Message extends Model
         }
 
     }
-    public static function fetch_next_message_going_out(){
-        //replace 13 with Auth::user()->id when going live
-        $messages = Message::where('user_id', 13)->where('check_in_due', '<', date( 'Y-m-d H:i:s'))
-          ->whereNull('sent_at')->get();
+    public static function fetch_next_message_going_out($user_id){
+        $next_message=null;
+        $messages = Message::where('user_id', $user_id)->whereNull('sent_at')
+          ->where('check_in_due', '<', date( 'Y-m-d H:i:s'))->get();
         foreach($messages as $message){
-                $last_confirmation = Confirmation::fetch_last($message->id);
-                $num_of_day_left_to_confirm = substr($message->confirm_period, 0, 1) 
-                  - $last_confirmation->iteration;
+            $num_of_days = fetch_num_of_days_until_msg_is_sent($message->id);
+            if (!isset($lowest_amount_of_time) || 
+              $num_of_days<$lowest_amount_of_time){
+                $lowest_amount_of_time = $num_of_days;
+                $next_message = $message;
+            }
         }
-
+        return $next_message;
+    }
+    public static function fetch_num_of_days_until_msg_is_sent($id){
+        $message = Message::find($id);
+        $last_confirmation = Confirmation::fetch_last($id);
+        $num_of_day_left_to_confirm = substr($message->confirm_period, 0, 1) 
+          - $last_confirmation->iteration;
+        $modifier=1;
+        if (substring($message->confirm_period, 1, 1)=="w") {
+            $modifier=7;
+        }
+        $num_of_days_left_to_confirm*=$modifier;
+        return $num_of_days_left_to_confirm + $modifier;
+        
+        
+        
     }
 }
