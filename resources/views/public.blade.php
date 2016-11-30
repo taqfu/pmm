@@ -17,7 +17,7 @@
 
     <div id='public-secondary' class='container hidden'>
         @include ('auth.login')
-        <div class='row'>
+        <div >
             <h3 class='row'><strong>
                 How It Works
             </strong></h3>
