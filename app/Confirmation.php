@@ -41,8 +41,8 @@ class Confirmation extends Model
         $users = User::where('confirmations', '>', 0)->get();
         foreach($users as $user){
             Confirmation::send_multiple($user);
-            //$user->confirmations=0;
-            //$user->save();
+            $user->confirmations=0;
+            $user->save();
         }
     }
     public static function fetch_last($message_id){
@@ -79,7 +79,7 @@ class Confirmation extends Model
           function ($m) use ($user) {
             $m->to($user->email, "Words Prevail")->subject($user->name . "!
               Please log into Words Prevail before your messages are sent out.")
-              ->from('confirmations@wordsprevail.com');
+              ->from('confirmations@wordsprevail.com', 'Words Prevail - Message Confirmation');
         });
     }
 }
