@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Exceptions;
-
+use Auth;
 use Exception;
+use Mail;
+use Request;
+use URL;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -32,6 +35,17 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if (Auth::guest()){
+            $user = "--GUEST--";
+        } else if (Auth::user()){
+            $user = Auth::user()->username;
+        } 
+        Mail::send('email.exception', ['all_requests'=>Request::all(), 'error' => $exception, 
+          'user'=>$user, "ip"=>Request::ip(), "url"=>Request::url(), 
+          "prev"=>URL::previous() ], function ($m) {
+            $m->to('taqfu0@gmail.com', 'Words Prevail Bug Reporting')->subject('Error');
+        });
+        
         parent::report($exception);
     }
 
