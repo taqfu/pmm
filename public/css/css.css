@@ -1,3 +1,18 @@
+*{
+  font-family: 'Raleway', sans-serif;
+
+
+  font-size:15px;
+    background-color:#e6e6e6;
+    color: #404040;
+
+}
+
+
+.title{
+  font-family: 'Playfair Display', serif;
+  font-size:80px;
+}
 .delete-button{
     color:red;
 }
@@ -24,6 +39,17 @@
 .create-email-answers{
     font-style:italic;
 }
+#logo, #about{
+    cursor:help;
+}
+#middle-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 #update-message-primary{
     padding:20px;
 }

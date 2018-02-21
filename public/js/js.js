@@ -7,6 +7,35 @@ $(document.body).ready(function () {
         }
 
     });
+
+        $(document).on('click', '#logo', function(event){
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
+                console.log("about-mobile");
+                $('#about-mobile').removeClass('hidden');
+                $("#logo").addClass('hidden');
+            }
+        });
+        $(document).on('click', '#about-mobile', function(event){
+            $('#about-mobile').addClass('hidden');
+            $("#logo").removeClass('hidden');
+        });
+
+        $(document).on('mouseover', '#logo', function(event){
+            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
+                console.log("about");
+                setTimeout(function(){
+                      $('#about').removeClass('hidden');
+                      $("#logo").addClass('hidden');
+                  }, 500);
+            }
+        });
+        $(document).on('mouseleave', '#about', function(event){
+            setTimeout(function(){
+                $('#about').addClass('hidden');
+                $("#logo").removeClass('hidden');
+            }, 500);
+        });
+
     $(document).on('change', '[name=checkInEvery]', function(event){
         if($("[name=checkInEvery]").val()==1){
             $(".plural").addClass('hidden');

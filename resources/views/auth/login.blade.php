@@ -59,9 +59,12 @@
         </div>
     </div>
 </div>
-<div id='login-menu-primary' class='text-center'>
+<div id='login-menu-primary' class='footer navbar-fixed-bottom text-center'>
+
+
+
     Log In Using:
-    <a href="redirect/facebook">Facebook</a> / 
-    <a href="redirect/google">Google</a> / 
+    <a href="redirect/facebook">Facebook</a> /
+    <a href="redirect/google">Google</a> /
     <a href='#' id='replace-primary-login-menu' class='replace-primary-button' >E-mail</a>
 </div>
