@@ -2,7 +2,7 @@
 @section ('content')
 @if (isset($_GET['verified']) && $_GET['verified']==1)
         <div class='margin-left'><strong>
-            Your email address has now been verified. 
+            Your email address has now been verified.
             (<A href="{{route('root')}}" class='text-danger'>Remove</a>)
         </strong></div>
 @endif
@@ -15,7 +15,7 @@
     @endforeach
 @endif
     @if (Auth::user())
-        @include('Message.create')
+        <!-- @include('Message.create') -->
         @include ('Message.index')
     @endif
 @endsection
