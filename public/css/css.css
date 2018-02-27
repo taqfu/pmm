@@ -1,3 +1,4 @@
+
 *{
   font-family: 'Raleway', sans-serif;
 
@@ -16,6 +17,9 @@
 .delete-button{
     color:red;
 }
+.hidden {
+    display:none;
+}
 .inline{
     display:inline;
 }
@@ -27,6 +31,12 @@
 }
 .margin-top{
     margin-top:20px;
+}
+
+.message-body{
+}
+.message-link{
+  cursor:pointer;
 }
 .padding-left{
     padding-left:20px;

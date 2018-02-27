@@ -1,13 +1,24 @@
 $(document.body).ready(function () {
-    $(document).on('change', '[name=confirmPeriod]', function(event){
-        if($("[name=confirmPeriod]:checked").val()=='immediately'){
-            $("#confirm-iterations").addClass('hidden');
-        } else {
-            $("#confirm-iterations").removeClass('hidden');
-        }
+        $(document).on('change', '[name=confirmPeriod]', function(event){
+            if($("[name=confirmPeriod]:checked").val()=='immediately'){
+                $("#confirm-iterations").addClass('hidden');
+            } else {
+                $("#confirm-iterations").removeClass('hidden');
+            }
 
-    });
-
+        });
+        $(document).on('click', '.message-link', function(event){
+            idBeginsWith = "message-link";
+            id = event.currentTarget.id=="" ?
+              searchElementForPartialParentID(event.currentTarget, idBeginsWith)
+              : event.currentTarget.id;
+            idNumber = id.substr(idBeginsWith.length);
+            if ($("#message-body" + idNumber).hasClass('hidden')){
+                $("#message-body" + idNumber).removeClass('hidden');
+            } else {
+                $("#message-body" + idNumber).addClass('hidden');
+            }
+        });
         $(document).on('click', '#logo', function(event){
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
                 console.log("about-mobile");
@@ -93,3 +104,12 @@ $(document.body).ready(function () {
         }
     });
 });
+function searchElementForPartialParentID(element, partialParentID){
+    if (element.id == ""
+        || (element.id.length>0 && element.id.substring(0, partialParentID.length) != partialParentID)){
+        searchElementForParentID(element.parentElement, partialParentID);
+    }
+    else {
+        return element.id;
+    }
+}
