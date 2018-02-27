@@ -37,10 +37,10 @@
         return $string . " ago";
     }
 ?>
-
+@include ("Message.create")
 @forelse ($messages as $message)
 
-    <div id='message-link{{$message->id}}' class='card mb-4 message-link' style="width:25rem;">
+    <div id='message-link{{$message->id}}' class='card mb-4 message-link container' style="width:25rem;">
         <div class='card-block'>
 
             <h2 class='card-title'>

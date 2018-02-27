@@ -1,9 +1,9 @@
 
-<div class='create-email-caption'>To</div>
-<div>
-    <input type='text' name='emailSendTo' maxlength='255' style='width:800px;'/>
+<div class='form-group'>
+    <label for='emailSendTo'>To:</label>
+    <input type='text' id='emailSendTo' name='emailSendTo' class='form-control' maxlength='255' />
 </div>
-<div class='create-email-caption'>Body</div>
-<div>
-    <textarea name='emailBody' maxlength='20000' style='width:800px;height:200px;'></textarea>
+<div class='form-group'>
+    <label for='emailBody'>Body:</label>
+    <textarea id='emailBody' name='emailBody' class='form-control' maxlength='20000' rows='6'></textarea>
 </div>
