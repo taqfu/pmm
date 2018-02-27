@@ -45,7 +45,7 @@
 
             <h2 class='card-title'>
                 @if ($message->ref_type=="email")
-                    E-mail - <span title="{{date('Y-m-d H:i:se', strtotime($message->created_at))}}">Created {{format_interval($message->created_at, "now")}}</span>
+                    E-mail - <span title="Created {{date('Y-m-d H:i:se', strtotime($message->created_at))}}">{{format_interval($message->created_at, "now")}}</span>
                 @endif
             </h2>
             <h4 class='card-subtitle mb-2 text-muted mb-2'>

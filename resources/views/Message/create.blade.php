@@ -32,9 +32,8 @@
             </select>
         </div>
         <div class='form-group-row text-center'>
-            <input type='submit' value='Submit' class='btn btn-primary btn-lg'/>
-
-            <input type='button' id='cancel-create-message' class='cancel-button btn btn-primary btn-lg' value='Cancel' />
+            <input type='submit' value='Submit' class='btn btn-primary btn-lg' style="font-size:30px;"/>
+            <input type='button' id='cancel-create-message' class='cancel-button btn btn-primary btn-lg' value='Cancel' style="font-size:30px;"/>
         </div>
     </div>
 </form>

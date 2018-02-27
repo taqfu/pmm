@@ -1,12 +1,9 @@
-body{
-    background-color:#e6e6e6;
 
-}
 *{
-  font-family: 'Raleway', sans-serif;
-
-
-    font-size:15px;
+    font-family: 'Raleway', sans-serif;
+}
+*:not(div.card){
+    background-color:#e6e6e6;
     color: #404040;
 
 }
