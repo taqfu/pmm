@@ -6,6 +6,7 @@ use Exception;
 use Mail;
 use Request;
 use URL;
+use App\Mail\BugReportEmail;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -39,13 +40,12 @@ class Handler extends ExceptionHandler
             $user = "--GUEST--";
         } else if (Auth::user()){
             $user = Auth::user()->username;
-        } 
-        Mail::send('email.exception', ['all_requests'=>Request::all(), 'error' => $exception, 
-          'user'=>$user, "ip"=>Request::ip(), "url"=>Request::url(), 
-          "prev"=>URL::previous() ], function ($m) {
-            $m->to('taqfu0@gmail.com', 'Words Prevail Bug Reporting')->subject('Error');
-        });
-        
+        }
+
+        Mail::to('taqfu0@gmail.com', 'Words Prevail Bug Reporting')
+          ->send(new BugReportEmail(Request::all(), $exception, $user,
+          Request::ip(), Request::url(), URL::previous()));
+
         parent::report($exception);
     }
 
