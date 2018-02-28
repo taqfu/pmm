@@ -74,12 +74,7 @@ class Confirmation extends Model
             return;
         }
         $num_of_days = Message::fetch_num_of_days_until_msg_is_sent($next_message->id);
-        Mail::send('email.confirmation',
-          ['num_of_messages'=>$user->confirmations, "next_message"=>$next_message, "num_of_days"=>$num_of_days],
-          function ($m) use ($user) {
-            $m->to($user->email, "Words Prevail")->subject($user->name . "!
-              Please log into Words Prevail before your messages are sent out.")
-              ->from('confirmations@wordsprevail.com', 'Words Prevail - Message Confirmation');
-        });
+        Mail::to($user->email)->send(new ConfirmationEmail($user->confirmations, $next_message, $num_of_days));
+
     }
 }

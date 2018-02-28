@@ -10,7 +10,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class ConfirmationEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    protected $num_of_messages;
+    protected $next_message;
+    protected $num_of_days;
     /**
      * Create a new message instance.
      *
@@ -18,7 +20,9 @@ class ConfirmationEmail extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->num_of_messages = $num_of_messages;
+        $this->next_message = $next_message;
+        $this->num_of_days = $num_of_days;
     }
 
     /**
@@ -28,6 +32,12 @@ class ConfirmationEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('emails.confirmation')-with([
+          'num_of_messages'=>$this->num_of_messages,
+          "next_message"=>$this->next_message,
+          "num_of_days"=>$this->num_of_days
+        ])
+          ->subject($user->name . "! Please log into Words Prevail before your messages are sent out.")
+          ->from('confirmations@wordsprevail.com', 'Words Prevail - Message Confirmation');;
     }
 }
