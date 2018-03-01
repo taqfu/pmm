@@ -36,6 +36,7 @@
                     <div class='col-md-6 text-right '>
                         <a href="{{route('user.settings')}}">
                             {{ Auth::user()->name }}
+                            <img id="settings-icon" src="/glyphicons-281-settings.png">
                         </a> -
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" class='inline'>
                             {{ csrf_field() }}
