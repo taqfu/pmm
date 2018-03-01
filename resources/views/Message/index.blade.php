@@ -10,6 +10,7 @@
         }
         $interval = $end->diff($begin);
         $string="";
+
         if ($interval->s>0){
             $string  = $interval->s . " second";
         }
@@ -25,7 +26,9 @@
         if ($interval->m>0){
             $string  = $interval->m . " month";
         }
-
+        if ($string=="" && $interval->s == 0){
+            return "now";
+        }
         if ($interval->y>0){
             $string  = $interval->y . " year";
         }
@@ -33,7 +36,9 @@
 
 
 
-        $string = substr($string, 0, 2)=="1 " ? $string : $string . "s";
+        $string = substr($string, 0, 2)=="1 "
+          ? $string : $string . "s";
+
         return $string . " ago";
     }
 ?>

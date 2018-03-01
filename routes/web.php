@@ -27,6 +27,7 @@ Route::get('/', [
                 User::check_in(Auth::user()->id);
                 return view('welcome', [
                     "messages"=>Message::where('user_id', Auth::user()->id)
+                      ->orderBy("created_at", "desc")
                       ->orderBy("check_in_due", "desc")->get(),
                 ]);
             }

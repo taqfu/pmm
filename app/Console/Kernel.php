@@ -28,12 +28,19 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+/*
+        $schedule->call(function(){
+            Message::checkAll();
+            Confirmation::daily();
+        })->everyMinute();
+*/
+
         $schedule->call(function(){
             Message::checkAll();
         })->everyFiveMinutes();
         $schedule->call(function(){
             Confirmation::daily();
-        })->daily();
+        })->everyFiveMinutes();
 
     }
 

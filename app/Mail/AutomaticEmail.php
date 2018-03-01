@@ -30,8 +30,9 @@ class AutomaticEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.template')->with('body'=>$this->email->body)
-        ->subject('E-mail from ' . $this->user->name
-        . " sent using Words Prevail")->from($this->user->email, $this->user->name);;
+        return $this->subject('E-mail from ' . $this->user->name
+        . " sent to you with Words Prevail")
+        ->view('emails.template')->with(['body'=>$this->email->body]);
+
     }
 }

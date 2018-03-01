@@ -75,7 +75,7 @@ class Confirmation extends Model
             return;
         }
         $num_of_days = Message::fetch_num_of_days_until_msg_is_sent($next_message->id);
-        Mail::to($user->email)->send(new ConfirmationEmail($user->confirmations, $next_message, $num_of_days));
+        Mail::to($user->email)->send(new ConfirmationEmail($user->confirmations, $next_message, $num_of_days, $user));
 
     }
 }
