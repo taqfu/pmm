@@ -6,6 +6,7 @@ use Auth;
 use DateInterval;
 use DateTime;
 use Mail;
+use \App\Mail\ConfirmationEmail;
 use Illuminate\Database\Eloquent\Model;
 
 class Confirmation extends Model

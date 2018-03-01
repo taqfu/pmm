@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Mail;
+use App\Mail\ConfirmRegistrationEmail;
+
 class RegisterController extends Controller
 {
     /*
@@ -63,10 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $confirmation_code = str_random(30);
-        Mail::send('Email.confirmRegistration', ['email'=>$data['email'],'confirmation_code'=>$confirmation_code], function($message) use ($data) {
-            $message->to($data['email'], $data['name'])
-                ->subject('Verify your email address');
-        });
+        Mail::to($data['email'], $data['name'])->send(new ConfirmRegistrationEmail($data['email'], $confirmation_code]));
 
 
         return User::create([
