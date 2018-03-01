@@ -45,23 +45,41 @@
 @include ("Message.create")
 @forelse ($messages as $message)
 
-    <div id='message-link{{$message->id}}' class='card mb-4 message-link container' style="width:25rem;">
+    <div id='message-link{{$message->id}}' class='card mb-4
+      @if ($message->sent_at!=null)
+          message-link
+      @endif
+          container' style="width:25rem;">
         <div class='card-block'>
 
             <h2 class='card-title'>
                 @if ($message->ref_type=="email")
                     E-mail - <span title="Created {{date('Y-m-d H:i:se', strtotime($message->created_at))}}">{{format_interval($message->created_at, "now")}}</span>
+
                 @endif
+                @if ($message->sent_at!=null)
+                    <span class='float-right text-success' >
+                        &#10003;
+                    </span>
+
+                @endif
+
+
             </h2>
-            <h4 class='card-subtitle mb-2 text-muted mb-2'>
+            <h4 class='card-subtitle mb-2 text-muted mb-2 text-center'>
                 @if ($message->ref_type=="email")
                     <?php $email = Email::find($message->ref_id) ?>
                     {{$email->send_to}}
                 @endif
 
+
             </h4>
-            <div id="message-body{{$message->id}}" class='hidden'>
-                <p class='card-text '>
+            <div id="message-body{{$message->id}}" class='
+              @if ($message->sent_at!=null)
+                  hidden
+              @endif
+              '>
+                <p class='card-text text-center bg-info'>
                     @if ($message->ref_type)
                         @include('Email.show', ['email'=>Email::find($message->ref_id)])
                     @endif
@@ -70,9 +88,11 @@
                     @if ($message->sent_at!=NULL)
                         <small title="{{date('Y-m-d H:i:se', strtotime($message->sent_at))}}">Sent {{format_interval($message->sent_at, "now")}}</small>
                     @elseif ($message->sent_at==null)
+
                         <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
                             {{csrf_field()}}
                             {{method_field('PUT')}}
+                            <input type='button' id='replace-primary-update-message' class='replace-primary-button btn btn-info' value='Edit' />
 
 
                             @if ($message->activated_at==NULL)
@@ -101,16 +121,12 @@
                                 Days
                             @endif
                         @endif
-                        - Due
-                        @if ($message->activated_at==NULL)
-                            N/A
-                        @else
-                            {{date('m/d/y g:i',
-                              User::local_time(Auth::user()->timezone, strtotime($message->check_in_due)))}}
-                        @endif
+                    <div>
 
+                    </div>
+                    <div>
                         @if (substr($message->confirm_period, 0, 1)>1)
-                            -
+
                             Confirm every
 
                             @if (substr($message->confirm_period, 1, 1)=="w")
@@ -122,29 +138,39 @@
                             {{substr($message->confirm_period, 0, 1)}}
                                 Times Before Sending Message
                         @elseif (substr($message->confirm_period, 0, 1)==1)
-                            -
-                            1
+
+                            1 More
                             @if (substr($message->confirm_period, 1, 1)=="w")
                                 Week
                             @else
                                 Day
                             @endif
                             To Confirm
-
-                        @endif
-                        @include ('Message.destroy')
-                        <input type='button' id='replace-primary-update-message' class='replace-primary-button btn btn-default' value='Edit' />
+                          <span class='pull-right'>
+                              @endif
+                              Due
+                              @if ($message->activated_at==NULL)
+                                  N/A
+                              @else
+                                  {{date('m/d/y g:ie',
+                                    User::local_time(Auth::user()->timezone, strtotime($message->check_in_due)))}}
+                              @endif
+                          </span>
+                      </div>
                     @endif
                 </p>
+
+
+                @include ('Message.destroy')
 
             </div>
         </div>
     </div>
 
-<!--
+
 
     @include('Message.edit')
--->
+
 @empty
     <div class='margin-left'>You have no messages.</div>
 @endforelse
