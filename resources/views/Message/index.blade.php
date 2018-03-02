@@ -48,6 +48,8 @@
     <div id='message-link{{$message->id}}' class='card mb-4
       @if ($message->sent_at!=null)
           message-link
+      @else
+          bg-light
       @endif
           container' style="width:25rem;">
         <div class='card-block'>
@@ -60,7 +62,7 @@
                 @endif
                 - <span title="Created {{date('Y-m-d H:i:se', strtotime($message->created_at))}}">{{format_interval($message->created_at, "now")}}</span>
                 @if ($message->sent_at!=null)
-                    <span class='float-right text-success' >
+                    <span title = " Sent {{date('Y-m-d H:i:se', strtotime($message->sent_at))}} " class='float-right text-success' >
                         &#10003;
                     </span>
 
@@ -83,14 +85,21 @@
                   hidden
               @endif
               '>
-                <p class='card-text text-center bg-info'>
+                <div class='card-text text-center bg-info'>
                     @if ($message->ref_type=="email")
                         @include('Email.show', ['email'=>Email::find($message->ref_id)])
                     @elseif ($message->ref_type=="public")
                         {{$message->public_message}}
                     @endif
-                </p>
-                <p class='card-text text-muted'>
+
+                </div>
+                <div class='row mb-3'>
+                    <input type='button' id='replace-primary-update-message'
+                      class='ml-4 replace-primary-button pull-left btn btn-small
+                      btn-outline-info' value='Edit' />
+
+                </div>
+                <div class=' card-text text-muted'>
                     @if ($message->sent_at!=NULL)
                         <small title="{{date('Y-m-d H:i:se', strtotime($message->sent_at))}}">Sent {{format_interval($message->sent_at, "now")}}</small>
                     @elseif ($message->sent_at==null)
@@ -98,17 +107,23 @@
                         <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
                             {{csrf_field()}}
                             {{method_field('PUT')}}
-                            <input type='button' id='replace-primary-update-message' class='replace-primary-button btn btn-info' value='Edit' />
 
 
                             @if ($message->activated_at==NULL)
-                                <span id='show-toggle-activation-button'><a href="#">Inactive</a></span>
-                                <input type='hidden' name='updateFunction' value='activate' />
-                                <input type='submit' value='Activate' class='btn btn-primary hidden' id='hide-toggle-activation-button' />
+                                <a id='show-toggle-activation-button{{$message->id}}'
+                                  class='show-toggle-activation-button' href="#">Inactive</a>
+
+                                <input type='hidden' name='updateFunction'
+                                  value='activate' />
+                                <input type='submit' value='Activate'
+                                  class='hide-toggle-activation-button btn btn-success hidden'
+                                  id='hide-toggle-activation-button{{$message->id}}' />
                             @else
-                                <span id='show-toggle-activation-button'><a href="#">Active</a></span>
+                                <a id='show-toggle-activation-button{{$message->id}}'
+                                  class='show-toggle-activation-button' href="#">Active</a>
+
                                 <input type='hidden' name='updateFunction' value='deactivate' />
-                                <input type='submit' value='Deactivate' class='btn btn-primary hidden' id='hide-toggle-activation-button' />
+                                <input type='submit' value='Deactivate' class='hide-toggle-activation-button btn btn-warning hidden' id='hide-toggle-activation-button{{$message->id}}' />
                             @endif
                         </form>
                         - Check In Every
@@ -127,6 +142,7 @@
                                 Days
                             @endif
                         @endif
+
                     <div>
 
                     </div>
@@ -164,7 +180,7 @@
                           </span>
                       </div>
                     @endif
-                </p>
+                </div>
 
 
                 @include ('Message.destroy')

@@ -86,13 +86,17 @@ $(document.body).ready(function () {
         $("#" + id).removeClass('hidden');
         $("#" + id + "-cover").addClass('hidden');
     });
-    $(document).on('mouseleave', '#hide-toggle-activation-button', function(event){
-      $('#hide-toggle-activation-button').addClass("hidden");
-      $('#show-toggle-activation-button').removeClass("hidden");
+    $(document).on('mouseleave', '.hide-toggle-activation-button', function(event){
+      var preString = "hide-toggle-activation-button";
+      messageID = event.target.id.substr(preString.length);
+      $('#hide-toggle-activation-button' + messageID).addClass("hidden");
+      $('#show-toggle-activation-button' + messageID).removeClass("hidden");
     });
-    $(document).on('mouseover', '#show-toggle-activation-button', function(event){
-      $('#show-toggle-activation-button').addClass("hidden");
-      $('#hide-toggle-activation-button').removeClass("hidden");
+    $(document).on('mouseover', '.show-toggle-activation-button', function(event){
+      var preString = "show-toggle-activation-button";
+      messageID = event.target.id.substr(preString.length);
+      $('#show-toggle-activation-button' + messageID).addClass("hidden");
+      $('#hide-toggle-activation-button' + messageID).removeClass("hidden");
     });
     $(document).on('click', '.replace-primary-button', function(event){
         var id = event.target.id.substr(16, event.target.id.length-16);
