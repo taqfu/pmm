@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    <div id="middle-container">
+    <div class="middle-container">
         <div id='logo' class='text-center title' >
             Words Prevail
         </div>
@@ -9,7 +9,7 @@
                 @include ('about')
         </div>
     </div>
-    <div id='about-mobile' class='hidden'>
+    <div id='about-mobile' class='middle-container hidden'>
         @include ('about')
     </div>
     <div id='login-menu-primary' class='footer navbar-fixed-bottom text-center'>

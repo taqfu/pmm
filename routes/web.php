@@ -41,12 +41,15 @@ Route::get('/verify/{email}/confirm/{confirmation_code}', [
     'as' => 'confirmation_path',
     'uses' => 'UserController@verify'
 ]);
-
+Route::get('/user/{id}/{check_in_uuid}/', ['as'=>'public-check-in', 'uses'=>'UserController@publicCheckIn']);
 Route::get('/home', 'HomeController@index');
 Route::get('/settings', ['as'=>'user.settings', 'uses'=>'UserController@settings']);
-Route::put("/settings/timezone-change", ['as'=>'timezone-change', 'uses'=>'UserController@updateTimeZone']);
-Route::put("/settings/name-change", ['as'=>'name-change', 'uses'=>'UserController@updateName']);
+Route::post('/user/{id}/{check_in_uuid}/', ['as'=>'check-in-with-pin', 'uses'=>'UserController@checkInWithPin']);
+
 Route::put("/settings/email-change", ['as'=>'email-change', 'uses'=>'UserController@updateEmail']);
+Route::put("/settings/name-change", ['as'=>'name-change', 'uses'=>'UserController@updateName']);
+Route::put("/settings/public-profile", ['as'=>'public-profile-change', 'uses'=>'UserController@updatePublicProfile']);
+Route::put("/settings/timezone-change", ['as'=>'timezone-change', 'uses'=>'UserController@updateTimeZone']);
 Route::resource('contact','ContactController');
 Route::resource('ContactInfo','ContactInfoController');
 Route::resource('message','MessageController');

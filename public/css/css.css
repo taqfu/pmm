@@ -38,6 +38,14 @@
 .message-link{
   cursor:pointer;
 }
+.middle-container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 .padding-left{
     padding-left:20px;
 }
@@ -51,13 +59,6 @@
 }
 #logo, #about{
     cursor:help;
-}
-#middle-container{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
 }
 #settings-icon{
   transform: scale(0.5, 0.5);

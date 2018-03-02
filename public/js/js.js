@@ -7,6 +7,9 @@ $(document.body).ready(function () {
             }
 
         });
+        $(document).on('click', '#no-pin', function(event){
+            $("#public-profile-without-pin").submit();
+        });
         $(document).on('click', '.message-link', function(event){
             idBeginsWith = "message-link";
             id = event.currentTarget.id=="" ?
