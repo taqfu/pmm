@@ -29,9 +29,12 @@
 </head>
 <body>
     <div id="app">
+
+
         @if (Auth::user())
             <nav class='row'>
-                <div class='col-md-6 lead'>
+                <div class='col-md-6 lead pl-5'>
+                    <a href="{{url('/')}}" >Home</a>
                 </div>
                     <div class='col-md-6 text-right '>
                         <a href="{{route('user.settings')}}">
