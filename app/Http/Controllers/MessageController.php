@@ -45,7 +45,8 @@ class MessageController extends Controller
             return back()->withErrors("You must logged in in order to do this.");
         }
 
-        if ($request->checkInEvery>8 || $request->checkInEvery<1){
+        if ($request->checkInEvery>8 || $request->checkInEvery<1
+          || ($request->messageType!="email" && $request->messageType!="public")){
             return back()->withErrors("Error Code ?");
         }
         $check_in_period = $request->checkInEvery . substr($request->checkInPeriod,0,1);
@@ -86,8 +87,13 @@ class MessageController extends Controller
         $message->check_in_period = $check_in_period;
         $message->confirm_period = $confirm_period;
         $message->check_in_due = $check_in_due;
-        $message->ref_type = "email";
-        $message->ref_id = $email->id;
+        $message->ref_type = $request->messageType;
+
+        if ($request->messageType=="email"){
+            $message->ref_id = $email->id;
+        }  if ($request->messageType=="public"){
+            $message->public_message = $request->publicMessage;
+        }
         $message->save();
         $confirmation = new Confirmation;
         $confirmation->message_id = $message->id;
@@ -104,7 +110,16 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::find($id);
+
+        if ($message==null || $message->ref_type != "public"){
+            return "Sorry. There's nothing here.";
+        }
+        if ($message->ref_type == "public" && $message->sent_at == null){
+            return "Sorry. There's nothing here. Yet.";
+        }
+
+        return view ("Message.show", ['message'=>$message]);
     }
 
     /**

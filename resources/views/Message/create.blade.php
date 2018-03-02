@@ -4,9 +4,20 @@
 <form id='create-message' method="POST" action="{{route('message.store')}}" class=' hidden container mb-5'>
     <div class='inline'>
         {{csrf_field()}}
-        <input type='hidden' name='messageType' value='email' />
+        <div class='form-check form-check-inline'>
+            <input type='radio' id='email-message-type' name='messageType' class='form-check-input' value='email' checked/>
+            <label for='email-message-type' class='form-check-label'>E-mail</label>
+        </div>
+        <div class='form-check form-check-inline'>
+            <input type='radio' id='public-message-type' name='messageType' class='form-check-input' value='public' />
+            <label for='public-message-type' class='form-check-label'>Public Message</label>
+        </div>
         @include ("Email.create")
-
+        <div id='public-message-input' class='hidden'>
+            <label for="public-message">Message:</label>
+            <textarea id='public-message' name='publicMessage'
+              class='form-control' rows='6'></textarea>
+        </div>
         <div class='create-message-caption'>How often do you want to check in for this message?</div>
         <div class='create-message-answers mb-2'>
             Every

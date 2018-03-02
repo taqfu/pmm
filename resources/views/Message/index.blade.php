@@ -54,9 +54,11 @@
 
             <h2 class='card-title'>
                 @if ($message->ref_type=="email")
-                    E-mail - <span title="Created {{date('Y-m-d H:i:se', strtotime($message->created_at))}}">{{format_interval($message->created_at, "now")}}</span>
-
+                    E-mail
+                @elseif ($message->ref_type=="public")
+                    Public
                 @endif
+                - <span title="Created {{date('Y-m-d H:i:se', strtotime($message->created_at))}}">{{format_interval($message->created_at, "now")}}</span>
                 @if ($message->sent_at!=null)
                     <span class='float-right text-success' >
                         &#10003;
@@ -70,6 +72,8 @@
                 @if ($message->ref_type=="email")
                     <?php $email = Email::find($message->ref_id) ?>
                     {{$email->send_to}}
+                @elseif ($message->ref_type=="public" && $message->sent_at!=null)
+                    <a href="{{route('message.show', ['id'=>$message->id])}}">{{route('message.show', ['id'=>$message->id])}}</a>
                 @endif
 
 
@@ -80,8 +84,10 @@
               @endif
               '>
                 <p class='card-text text-center bg-info'>
-                    @if ($message->ref_type)
+                    @if ($message->ref_type=="email")
                         @include('Email.show', ['email'=>Email::find($message->ref_id)])
+                    @elseif ($message->ref_type=="public")
+                        {{$message->public_message}}
                     @endif
                 </p>
                 <p class='card-text text-muted'>

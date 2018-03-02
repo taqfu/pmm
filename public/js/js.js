@@ -1,4 +1,13 @@
 $(document.body).ready(function () {
+        $(document).on('change', '[name=messageType]', function(event){
+            if($("[name=messageType]:checked").val()=='email'){
+                $("#public-message-input").addClass('hidden');
+                $("#email-input").removeClass('hidden');
+            } else if($("[name=messageType]:checked").val()=='public'){
+              $("#public-message-input").removeClass('hidden');
+              $("#email-input").addClass('hidden');
+            }
+        });
         $(document).on('change', '[name=confirmPeriod]', function(event){
             if($("[name=confirmPeriod]:checked").val()=='immediately'){
                 $("#confirm-iterations").addClass('hidden');
