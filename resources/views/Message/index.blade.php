@@ -45,7 +45,7 @@
 @include ("Message.create")
 @forelse ($messages as $message)
 
-    <div id='message-link{{$message->id}}' class='card mb-4
+    <div id='message-link{{$message->id}}' class='card mt-4
       @if ($message->sent_at!=null)
           message-link
       @else
@@ -85,7 +85,7 @@
                   hidden
               @endif
               '>
-                <div class='card-text text-center bg-info'>
+                <div class='card-text text-center border border-info p-3'>
                     @if ($message->ref_type=="email")
                         @include('Email.show', ['email'=>Email::find($message->ref_id)])
                     @elseif ($message->ref_type=="public")
@@ -94,9 +94,9 @@
 
                 </div>
                 <div class='row mb-3'>
-                    <input type='button' id='replace-primary-update-message'
-                      class='ml-4 replace-primary-button pull-left btn btn-small
-                      btn-outline-info' value='Edit' />
+                    <input type='button' id='replace-message-link-with-edit-message-{{$message->id}}'
+                      class='mx-4 replace-with pull-left btn btn-block
+                      btn-info' value='Edit'  replace='message-link' with='edit-message'/>
 
                 </div>
                 <div class=' card-text text-muted'>

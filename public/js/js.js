@@ -1,4 +1,33 @@
 $(document.body).ready(function () {
+        $(document).on('click', ".replace-with", function(event){
+            id = event.target.id;
+            strArr = id.split("-");
+            idNum = strArr[strArr.length-1];
+            replaceMode = true;
+            replaceStr  = "";
+            withStr = "";
+            strArr.forEach (function(str){
+                if (str == "with"){
+                    replaceMode = false;
+                }
+                if (str == "with" || str == "replace" || str == idNum){
+                    return;
+                }
+                if (replaceMode){
+                    replaceStr  = replaceStr.length>0
+                      ? replaceStr + "-" + str
+                      : str;
+                } else {
+                  withStr  = withStr.length>0
+                    ? withStr + "-" + str
+                    : str;
+                }
+
+            });
+            $("#" + replaceStr + idNum).addClass('hidden');
+            $("#" + withStr + idNum).removeClass('hidden');
+
+        });
         $(document).on('change', '[name=messageType]', function(event){
             if($("[name=messageType]:checked").val()=='email'){
                 $("#public-message-input").addClass('hidden');
