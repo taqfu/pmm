@@ -18,6 +18,7 @@ class UserController extends Controller
             return "Sorry. There is nothing here.";
         }
         if ($request->pin == $user->pin){
+            //User::check_in($id);
             return view ("User.check-in-success");
         }
         return view('User.check-in-fail');
@@ -32,6 +33,7 @@ class UserController extends Controller
             return view ("User.check-in-with-pin");
         }
         if ($user->public_check_in==2){
+            //User::check_in($id);
             return view ("User.check-in-success");
         }
     }
