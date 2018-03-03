@@ -1,4 +1,17 @@
 $(document.body).ready(function () {
+    if($("#logo").length > 0){
+        window.setInterval(function(){
+            $("#logo").css("border", "1px #d9d9d9 dotted");
+            setTimeout(function(){
+                $("#logo").css("border", "0px none rgb(33, 37, 41)");
+            }, 750);
+
+
+
+
+        }, 3000);
+
+    }
         $(document).on('click', ".replace-with", function(event){
             id = event.target.id;
             strArr = id.split("-");
@@ -74,18 +87,23 @@ $(document.body).ready(function () {
 
         $(document).on('mouseover', '#logo', function(event){
             if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)){
-                console.log("about");
-                setTimeout(function(){
+
                       $('#about').removeClass('hidden');
                       $("#logo").addClass('hidden');
-                  }, 500);
+
             }
         });
+
         $(document).on('mouseleave', '#about', function(event){
-            setTimeout(function(){
+
                 $('#about').addClass('hidden');
                 $("#logo").removeClass('hidden');
-            }, 500);
+
+        });
+        $(document).on('mouseexit', '#about', function(event){
+          $('#about').addClass('hidden');
+          $("#logo").removeClass('hidden');
+
         });
 
     $(document).on('change', '[name=checkInEvery]', function(event){

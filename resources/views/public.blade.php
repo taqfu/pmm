@@ -1,8 +1,10 @@
 @extends ('layouts.app')
 
 @section('content')
+    <script>
+    </script>
     <div class="middle-container">
-        <div id='logo' class='text-center title' >
+        <div id='logo' class='text-center title p-5' >
             Words Prevail
         </div>
         <div id='about' class='hidden'>
@@ -22,6 +24,3 @@
         <a href='/login' id='replace-primary-login-menu' class='replace-primary-button' >E-mail</a>
     </div>
 @endsection
-      <!--
-
-    -->
