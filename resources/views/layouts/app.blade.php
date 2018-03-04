@@ -33,10 +33,10 @@
 
         @if (Auth::user())
             <nav class='row'>
-                <div class='col-md-6 lead pl-5'>
+                <div class='col-xs-6 lead pl-5'>
                     <a href="{{url('/')}}" >Home</a>
                 </div>
-                    <div class='col-md-6 text-right '>
+                    <div class='col-xs-6 text-right '>
                         <a href="{{route('user.settings')}}">
                             {{ Auth::user()->name }}
                             <img id="settings-icon" src="/glyphicons-281-settings.png">
