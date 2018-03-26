@@ -32,7 +32,7 @@ class AutomaticEmail extends Mailable
     {
         return $this->subject('E-mail from ' . $this->user->name
         . " sent to you with Words Prevail")
-        ->view('emails.template')->with(['body'=>$this->email->body, "created_at"=>$this->email->created_at], "name"=>$this->user->name);
+        ->view('emails.template')->with(['body'=>$this->email->body, "created_at"=>$this->email->created_at, "name"=>$this->user->name]);
 
     }
 }
